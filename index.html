@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design to Print: From Idea to 3D Reality</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #FFF6EB;
+      color: #2B2018;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #FFF6EB;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(43, 32, 24, 0.25);
+      overflow: hidden;
+      border: 1px solid #E7D6C4;
+    }
+
+    /* Header */
+    header {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.4em;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      color: #FFF6EB;
+    }
+
+    header p {
+      font-size: 1.1em;
+      color: #C7AD94;
+    }
+
+    /* Introduction */
+    .intro {
+      padding: 35px 40px;
+      background: #E7D6C4;
+      border-bottom: 3px solid #8A6E57;
+    }
+
+    .intro h2 {
+      color: #2B2018;
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+
+    .intro p {
+      margin-bottom: 12px;
+      color: #2B2018;
+      font-size: 1.05em;
+    }
+
+    .intro .highlight {
+      background: #FFF6EB;
+      border-left: 4px solid #8A6E57;
+      padding: 12px 18px;
+      border-radius: 6px;
+      margin-top: 15px;
+      font-style: italic;
+      color: #2B2018;
+    }
+
+    /* Topics Section */
+    .topics {
+      padding: 40px;
+      background: #FFF6EB;
+    }
+
+    .topics h2 {
+      text-align: center;
+      color: #2B2018;
+      font-size: 1.6em;
+      margin-bottom: 30px;
+    }
+
+    /* Each Topic Box */
+    .topic-box {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 12px;
+      padding: 22px 25px;
+      margin-bottom: 18px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topic-box:hover {
+      border-color: #8A6E57;
+      box-shadow: 0 8px 20px rgba(138, 110, 87, 0.25);
+      transform: translateY(-3px);
+      background: #E7D6C4;
+    }
+
+    .topic-number {
+      background: #2B2018;
+      color: #FFF6EB;
+      min-width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4em;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .topic-content {
+      flex-grow: 1;
+    }
+
+    .topic-content h3 {
+      color: #2B2018;
+      font-size: 1.15em;
+      margin-bottom: 5px;
+    }
+
+    .topic-content p {
+      color: #8A6E57;
+      font-size: 0.92em;
+      margin-bottom: 10px;
+    }
+
+    .topic-link {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .topic-link:hover {
+      background: #2B2018;
+    }
+
+    /* Footer */
+    footer {
+      background: #2B2018;
+      color: #FFF6EB;
+      text-align: center;
+      padding: 25px;
+      font-size: 0.9em;
+    }
+
+    footer p {
+      color: #C7AD94;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.7em;
+      }
+
+      .topic-box {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .topics, .intro {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <h1>Design to Print</h1>
+      <p>From Idea to 3D Reality — A 7-Week SketchUp Journey</p>
+    </header>
+
+    <!-- Introduction -->
+    <section class="intro">
+      <h2>Welcome to the Unit</h2>
+      <p>
+        In this 7-week unit, you will learn how to turn ideas into 3D models using
+        <strong>SketchUp for Schools</strong>. Starting from simple shapes, you will
+        progress to designing complex objects and preparing them for 3D printing.
+      </p>
+      <p>
+        By the end, you will design your own real-life product that solves a problem
+        or adds value to a service — exactly what 3D modeling is for.
+      </p>
+      <div class="highlight">
+        "Every great product starts as an idea. You'll learn how to make that idea real — one shape at a time."
+      </div>
+    </section>
+
+    <!-- Topics -->
+    <section class="topics">
+      <h2>Weekly Lessons</h2>
+
+      <!-- Week 1 -->
+      <div class="topic-box">
+        <div class="topic-number">1</div>
+        <div class="topic-content">
+          <h3>Introduction to 3D Modeling &amp; SketchUp Basics</h3>
+          <p>What is 3D modeling, and how do I navigate SketchUp?</p>
+          <a href="week1.html" class="topic-link">Introduction to 3D Modeling &amp; SketchUp Basics</a>
+        </div>
+      </div>
+
+      <!-- Week 2 -->
+      <div class="topic-box">
+        <div class="topic-number">2</div>
+        <div class="topic-content">
+          <h3>Drawing Tools &amp; Precision Modeling</h3>
+          <p>How do I draw accurately in 3D?</p>
+          <a href="week2.html" class="topic-link">Drawing Tools &amp; Precision Modeling</a>
+        </div>
+      </div>
+
+      <!-- Week 3 -->
+      <div class="topic-box">
+        <div class="topic-number">3</div>
+        <div class="topic-content">
+          <h3>Turtle Sandbox (Beginner Project)</h3>
+          <p>Building a complete model using basic tools.</p>
+          <a href="week3.html" class="topic-link">Turtle Sandbox (Beginner Project)</a>
+        </div>
+      </div>
+
+      <!-- Week 4 -->
+      <div class="topic-box">
+        <div class="topic-number">4</div>
+        <div class="topic-content">
+          <h3>Pirate Ship Playhouse: Hull &amp; Deck</h3>
+          <p>Building complex geometry with Offset and Move.</p>
+          <a href="week4.html" class="topic-link">Pirate Ship Playhouse: Hull &amp; Deck</a>
+        </div>
+      </div>
+
+      <!-- Week 5 -->
+      <div class="topic-box">
+        <div class="topic-number">5</div>
+        <div class="topic-content">
+          <h3>Pirate Ship Playhouse: Cabin, Portholes &amp; Details</h3>
+          <p>Adding details and preparing for 3D printing.</p>
+          <a href="week5.html" class="topic-link">Pirate Ship Playhouse: Cabin, Portholes &amp; Details</a>
+        </div>
+      </div>
+
+      <!-- Week 6 -->
+      <div class="topic-box">
+        <div class="topic-number">6</div>
+        <div class="topic-content">
+          <h3>Customization &amp; Export for 3D Printing</h3>
+          <p>Making it your own and preparing for the printer.</p>
+          <a href="week6.html" class="topic-link">Customization &amp; Export for 3D Printing</a>
+        </div>
+      </div>
+
+      <!-- Week 7 -->
+      <div class="topic-box">
+        <div class="topic-number">7</div>
+        <div class="topic-content">
+          <h3>Design Your Own Real-Life Product</h3>
+          <p>Solving a real problem with 3D modeling and printing.</p>
+          <a href="week7.html" class="topic-link">Design Your Own Real-Life Product</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>Design to Print: From Idea to 3D Reality &copy; Grade 10 SketchUp Unit</p>
+    </footer>
+  </div>
+</body>
+</html>

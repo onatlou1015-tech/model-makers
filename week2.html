@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 2 — Drawing Tools &amp; Precision Modeling</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #FFF6EB;
+      color: #2B2018;
+      line-height: 1.7;
+      padding: 40px 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #FFF6EB;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(43, 32, 24, 0.25);
+      overflow: hidden;
+      border: 1px solid #E7D6C4;
+      position: relative;
+    }
+
+    /* Header */
+    header {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 45px 40px;
+      text-align: center;
+    }
+
+    header .week-label {
+      color: #C7AD94;
+      font-size: 0.95em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #FFF6EB;
+    }
+
+    header .subtitle {
+      color: #C7AD94;
+      font-size: 1em;
+    }
+
+    /* Content sections */
+    section {
+      padding: 30px 40px;
+      border-bottom: 1px solid #E7D6C4;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    h2 {
+      color: #2B2018;
+      font-size: 1.4em;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #C7AD94;
+    }
+
+    h3 {
+      color: #8A6E57;
+      font-size: 1.1em;
+      margin: 20px 0 10px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: #2B2018;
+    }
+
+    ul, ol {
+      margin: 10px 0 15px 25px;
+      color: #2B2018;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* Welcome box */
+    .welcome {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 18px 22px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    /* Goal box */
+    .goal {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .goal ul {
+      margin-bottom: 0;
+    }
+
+    /* Activity blocks */
+    .activity {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 18px;
+    }
+
+    .activity h3 {
+      color: #2B2018;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .activity .time {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      font-size: 0.8em;
+      padding: 3px 12px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    /* Tip box */
+    .tip {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 14px 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+      font-style: italic;
+    }
+
+    /* Warning box */
+    .warning {
+      background: #FFF6EB;
+      border-left: 5px solid #2B2018;
+      padding: 14px 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+
+    /* Video button */
+    .video-wrap {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .stylish-link {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      border-radius: 6px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      border: 2px solid #2B2018;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .stylish-link:hover {
+      background-color: #2B2018;
+      color: #FFF6EB;
+      transform: translateY(-2px);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 0.95em;
+    }
+
+    th {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #E7D6C4;
+      color: #2B2018;
+    }
+
+    tr:nth-child(even) td {
+      background: #FFF6EB;
+    }
+
+    tr:hover td {
+      background: #E7D6C4;
+    }
+
+    /* Step boxes */
+    .step {
+      background: #E7D6C4;
+      border-radius: 8px;
+      padding: 14px 20px;
+      margin: 12px 0;
+    }
+
+    .step strong {
+      color: #2B2018;
+    }
+
+    /* Check yourself */
+    .check {
+      background: #FFF6EB;
+      border: 2px dashed #8A6E57;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .check ul {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .check li::before {
+      content: "☐ ";
+      color: #8A6E57;
+      font-weight: bold;
+    }
+
+    /* Teacher instructions */
+    .teacher-instructions {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 30px 40px;
+    }
+
+    .teacher-instructions h2 {
+      color: #FFF6EB;
+      border-bottom: 2px solid #8A6E57;
+    }
+
+    .teacher-instructions ol {
+      margin-left: 25px;
+      color: #FFF6EB;
+    }
+
+    .teacher-instructions li {
+      margin-bottom: 8px;
+      color: #E7D6C4;
+    }
+
+    /* Navigation buttons */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 25px 40px;
+      background: #E7D6C4;
+      border-top: 3px solid #8A6E57;
+      flex-wrap: wrap;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: #FFF6EB;
+      color: #2B2018;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      border: 2px solid #8A6E57;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #8A6E57;
+      color: #FFF6EB;
+    }
+
+    .next-btn {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      margin-left: auto;
+    }
+
+    .next-btn:hover {
+      background: #2B2018;
+    }
+
+        /* 🐕 Dog chase animation */
+    .dog {
+      position: fixed;
+      font-size: 2.2em;
+      color: #8A6E57;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .dog.chaser {
+      left: -100px;
+      top: 22%;
+    }
+
+    .dog.chased {
+      left: -160px;
+      top: 28%;
+      transform: scaleX(-1);
+    }
+
+    .dog.chaser.run {
+      animation: chaseRight 14s linear forwards;
+      opacity: 1;
+    }
+
+    .dog.chased.run {
+      animation: chasedRight 14s linear forwards;
+      opacity: 1;
+    }
+
+    /* Chaser: bounces and tilts like it's running */
+    @keyframes chaseRight {
+      0%   { left: -100px; top: 22%; transform: rotate(0deg); }
+      20%  { top: 16%; transform: rotate(8deg); }
+      40%  { top: 30%; transform: rotate(-10deg); }
+      50%  { top: 24%; transform: rotate(0deg); }
+      60%  { top: 32%; transform: rotate(6deg); }
+      80%  { top: 18%; transform: rotate(-8deg); }
+      100% { left: 110%; top: 22%; transform: rotate(0deg); }
+    }
+
+    /* Chased: bounces ahead, same direction, slightly different rhythm */
+    @keyframes chasedRight {
+      0%   { left: -160px; top: 28%; transform: scaleX(-1) rotate(0deg); }
+      20%  { top: 22%; transform: scaleX(-1) rotate(-8deg); }
+      40%  { top: 34%; transform: scaleX(-1) rotate(10deg); }
+      50%  { top: 28%; transform: scaleX(-1) rotate(0deg); }
+      60%  { top: 36%; transform: scaleX(-1) rotate(-6deg); }
+      80%  { top: 24%; transform: scaleX(-1) rotate(8deg); }
+      100% { left: 110%; top: 28%; transform: scaleX(-1) rotate(0deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5em; }
+      section, .teacher-instructions { padding: 22px; }
+      .activity { padding: 16px; }
+      .nav-buttons {
+        flex-direction: column;
+        padding: 20px;
+      }
+      .next-btn, .back-btn {
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+    <!-- 🐕 Two dogs chasing each other -->
+  <div class="dog chaser" id="dogChaser">🐕</div>
+  <div class="dog chased" id="dogChased">🐩</div>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="week-label">Week 2</div>
+      <h1>Drawing Tools &amp; Precision Modeling</h1>
+      <div class="subtitle">How do I draw accurately in 3D?</div>
+    </header>
+
+    <!-- Welcome -->
+    <section>
+      <h2>Welcome Back!</h2>
+      <div class="welcome">
+        <p>Last week, you learned how to move around in SketchUp and build your first 3D box. Now it's time to make things <strong>accurate</strong>.</p>
+        <p>In the real world, a table leg can't be "sort of" 2 feet tall — it has to be exactly 2 feet. This week, you'll learn how to type <strong>exact dimensions</strong> while modeling, so your designs come out clean, stable, and professional.</p>
+        <p>By the end of this lesson, you'll build a complete <strong>table with four legs</strong> — using precise measurements.</p>
+      </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section>
+      <h2>What You'll Learn This Week</h2>
+      <div class="goal">
+        <ul>
+          <li>Use the <strong>Line</strong>, <strong>Rectangle</strong>, <strong>Circle</strong>, and <strong>Offset</strong> tools</li>
+          <li>Type <strong>precise dimensions</strong> while you model</li>
+          <li>Use the <strong>Eraser</strong> tool to clean up geometry</li>
+          <li>Build a simple table with accurate measurements</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section>
+      <h2>Let's Begin</h2>
+
+      <!-- Activity 1 -->
+      <div class="activity">
+        <span class="time">10 minutes</span>
+        <h3>1. Warm-Up: Recap Navigation</h3>
+        <p>Before we start drawing, let's make sure you still remember how to move around in SketchUp. Open the model you saved last week (<code>week1-studentid-firstname-lastname</code>).</p>
+        <p><strong>Quick practice:</strong></p>
+        <ol>
+          <li>Orbit around your box 360°</li>
+          <li>Pan to the left</li>
+          <li>Zoom in on one corner</li>
+          <li>Press <strong>Shift + Z</strong> to see everything</li>
+        </ol>
+        <div class="tip">
+          If any of these feel unfamiliar, review Week 1 before moving on. Precision comes after comfort.
+        </div>
+        <div class="warning">
+          <strong>Reminder:</strong> Always save your file in Google Drive with the format <code>week#-studentid-firstname-lastname</code>.
+        </div>
+      </div>
+
+      <!-- Activity 2 -->
+      <div class="activity">
+        <span class="time">15 minutes</span>
+        <h3>2. The Line Tool with Dimensions</h3>
+        <p>The <strong>Line</strong> tool is the most basic — and most powerful — drawing tool in SketchUp. Every shape starts with a line.</p>
+        <p><strong>How to use the Line tool:</strong></p>
+        <ol>
+          <li>Select the <strong>Line</strong> tool (or press <strong>L</strong>)</li>
+          <li>Click once to start a line</li>
+          <li>Move your cursor — a line follows</li>
+          <li>Click again to end the line</li>
+        </ol>
+        <p><strong>Typing exact lengths:</strong></p>
+        <div class="step">
+          <strong>Try this:</strong>
+          <ul>
+            <li>Draw a line in any direction</li>
+            <li>Before clicking the second point, <strong>type</strong> <code>5m</code></li>
+            <li>Press <strong>Enter</strong> — the line locks to exactly 5 meters</li>
+          </ul>
+        </div>
+        <p><strong>Drawing a closed shape with Line:</strong></p>
+        <ol>
+          <li>Draw a line going right — type <code>4m</code>, press Enter</li>
+          <li>Draw a line going up — type <code>3m</code>, press Enter</li>
+          <li>Draw a line going left — type <code>4m</code>, press Enter</li>
+          <li>Draw a line going down — type <code>3m</code>, press Enter</li>
+        </ol>
+        <p>You just drew an exact rectangle — without using the Rectangle tool!</p>
+        <div class="tip">
+          <strong>Pro tip:</strong> SketchUp shows colored hints (red, green, blue) when your line is perfectly aligned with an axis. Watch for these "inference" lines.
+        </div>
+      </div>
+
+      <!-- Activity 3 -->
+      <div class="activity">
+        <span class="time">15 minutes</span>
+        <h3>3. The Offset Tool (Creating Wall Thickness)</h3>
+        <p>In real life, walls and objects have <strong>thickness</strong>. A wall isn't a flat piece of paper — it's a solid object. The <strong>Offset</strong> tool lets you create a smaller or larger copy of a shape, inside or outside the original.</p>
+        <p><strong>How to use Offset:</strong></p>
+        <ol>
+          <li>Draw a rectangle using the Rectangle tool</li>
+          <li>Select the <strong>Offset</strong> tool (or press <strong>F</strong>)</li>
+          <li>Click on the rectangle's edge</li>
+          <li>Move your cursor inward or outward</li>
+          <li>Type an exact distance — like <code>20cm</code> — then press Enter</li>
+        </ol>
+        <p><strong>Why this matters:</strong></p>
+        <ul>
+          <li>Walls in a house have thickness</li>
+          <li>A picture frame has a border</li>
+          <li>A tabletop has an edge</li>
+        </ul>
+        <div class="step">
+          <strong>Try this:</strong>
+          <ul>
+            <li>Draw a rectangle 5m × 4m</li>
+            <li>Use Offset to create a 30cm border inside</li>
+            <li>Push/Pull the inner rectangle down by 10cm</li>
+          </ul>
+        </div>
+        <p>You just created a simple tray or picture frame!</p>
+        <div class="tip">
+          Offset works on <strong>any</strong> closed shape — rectangles, circles, even complex curves.
+        </div>
+      </div>
+
+      <!-- Activity 4 -->
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>4. The Circle Tool &amp; Cylinders</h3>
+        <p>Round objects are everywhere — cups, pencils, tables legs, pipes. To make them in SketchUp, you use the <strong>Circle</strong> tool and then <strong>Push/Pull</strong> upward.</p>
+        <p><strong>How to make a cylinder:</strong></p>
+        <ol>
+          <li>Select the <strong>Circle</strong> tool (or press <strong>C</strong>)</li>
+          <li>Click once to place the center</li>
+          <li>Move your cursor outward — a circle grows</li>
+          <li><strong>Type an exact radius</strong> — like <code>5cm</code> — then press Enter</li>
+          <li>Select <strong>Push/Pull</strong> (or press <strong>P</strong>)</li>
+          <li>Click the circle face</li>
+          <li>Pull upward — type <code>50cm</code> — press Enter</li>
+        </ol>
+        <p>You just made a cylinder — perfect for a table leg!</p>
+        <div class="step">
+          <strong>Try this:</strong>
+          <ul>
+            <li>Create a cylinder with a radius of <code>5cm</code> and a height of <code>75cm</code></li>
+            <li>Make another one next to it</li>
+            <li>Orbit around to check both are straight</li>
+          </ul>
+        </div>
+        <div class="tip">
+          <strong>Remember:</strong> Circle = 2D. Push/Pull = 3D. Always combine them to make a cylinder.
+        </div>
+      </div>
+
+      <!-- Activity 5 -->
+      <div class="activity">
+        <span class="time">25 minutes</span>
+        <h3>5. Build a Simple Table (Rectangle Top + 4 Legs)</h3>
+        <p>Now let's put everything together. You'll build a table using:</p>
+        <ul>
+          <li><strong>Rectangle</strong> — for the tabletop</li>
+          <li><strong>Push/Pull</strong> — to give the top thickness</li>
+          <li><strong>Circle + Push/Pull</strong> — for the legs</li>
+          <li><strong>Move + Copy</strong> — to place 4 legs</li>
+        </ul>
+
+        <p><strong>Step 1: Build the tabletop</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select <strong>Rectangle</strong> tool</li>
+            <li>Click once to start</li>
+            <li>Type <code>1.2m, 60cm</code> and press Enter</li>
+            <li>Select <strong>Push/Pull</strong></li>
+            <li>Pull up slightly — type <code>5cm</code> — press Enter</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Build the first leg</strong></p>
+        <div class="step">
+          <ul>
+            <li>Move your view so you can see under the tabletop</li>
+            <li>Select <strong>Circle</strong> tool</li>
+            <li>Place the center near one corner of the tabletop (about 5cm in from each edge)</li>
+            <li>Type <code>3cm</code> for the radius — press Enter</li>
+            <li>Select <strong>Push/Pull</strong></li>
+            <li>Pull downward — type <code>70cm</code> — press Enter</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Copy the leg to make 4 legs</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select the leg with the <strong>Select</strong> tool (spacebar)</li>
+            <li>Press <strong>Ctrl + C</strong> to copy</li>
+            <li>Press <strong>Ctrl + V</strong> to paste</li>
+            <li>Use the <strong>Move</strong> tool (M) to place it near the second corner</li>
+            <li>Repeat for the remaining two legs</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 4: Clean up with the Eraser</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select the <strong>Eraser</strong> tool (or press <strong>E</strong>)</li>
+            <li>Remove any stray lines or overlapping edges</li>
+            <li>Check that all four legs touch the tabletop evenly</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>Look what you built!</strong> A table with exact measurements — every leg the same height, every surface aligned.
+        </div>
+        <div class="warning">
+          <strong>If something looks wrong:</strong> Press <strong>Ctrl + Z</strong> to undo. Don't panic. Every 3D designer makes mistakes — the good ones just fix them.
+        </div>
+      </div>
+
+      <!-- Activity 6 -->
+      <div class="activity">
+        <span class="time">15 minutes</span>
+        <h3>6. Check &amp; Save</h3>
+        <p>Before you finish, take a moment to review your table.</p>
+        <p><strong>Check your model:</strong></p>
+        <ul>
+          <li>Are all 4 legs the same height?</li>
+          <li>Does the tabletop sit level?</li>
+          <li>Are there any stray lines or overlapping edges?</li>
+          <li>Is everything connected? (No floating parts)</li>
+        </ul>
+        <p><strong>Save your work:</strong></p>
+        <ol>
+          <li>Click the model name at the top</li>
+          <li>Rename it: <code>week2-studentid-firstname-lastname</code></li>
+          <li>Click <strong>Save</strong></li>
+          <li>Check that it appears in your Google Drive</li>
+        </ol>
+        <div class="tip">
+          Use <strong>Zoom Extents (Shift + Z)</strong> to see your whole table before saving. This is a good habit — like checking your work before turning it in.
+        </div>
+      </div>
+    </section>
+
+    <!-- Check Yourself -->
+    <section>
+      <h2>Check Yourself</h2>
+      <p>Before you finish, make sure you can do all of these:</p>
+      <div class="check">
+        <ul>
+          <li>I can draw a line with an exact length</li>
+          <li>I can use the Offset tool to create thickness</li>
+          <li>I can make a cylinder with the Circle + Push/Pull tools</li>
+          <li>I can copy and place multiple objects</li>
+          <li>I can use the Eraser tool to clean up</li>
+          <li>I built a table with 4 legs</li>
+          <li>I saved my file correctly</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Key Terms -->
+    <section>
+      <h2>Key Words to Remember</h2>
+      <table>
+        <tr>
+          <th>Term</th>
+          <th>What It Means</th>
+        </tr>
+        <tr><td>Dimension</td><td>An exact measurement — length, width, or height</td></tr>
+        <tr><td>Midpoint</td><td>The exact center of a line or edge</td></tr>
+        <tr><td>Inference</td><td>A colored hint that helps you align to axes, midpoints, or edges</td></tr>
+        <tr><td>Offset</td><td>Creating a copy of a shape at a set distance — used for wall thickness or borders</td></tr>
+        <tr><td>Cylinder</td><td>A 3D shape made by pushing/pulling a circle upward</td></tr>
+      </table>
+    </section>
+
+    <!-- Quick Check -->
+    <section>
+      <h2>Quick Check</h2>
+      <p>Answer these in your head or on paper:</p>
+      <ol>
+        <li>What does the Offset tool do?</li>
+        <li>How do you make a cylinder in SketchUp?</li>
+        <li>What key do you press to type an exact dimension?</li>
+        <li>What tool removes unwanted lines?</li>
+      </ol>
+    </section>
+
+    <!-- Homework -->
+    <section>
+      <h2>Optional Homework</h2>
+      <ul>
+        <li>Sketch a simple piece of furniture you'd like to build (a stool, shelf, or bench)</li>
+        <li>Write down the exact dimensions you'd use for each part</li>
+        <li>If you have SketchUp at home, try modeling it</li>
+      </ul>
+    </section>
+
+    <!-- Next Week -->
+    <section>
+      <h2>Coming Next Week</h2>
+      <p><strong>Week 3: Turtle Sandbox (Beginner Project)</strong> — You'll combine everything you've learned to build a complete multi-part model: a turtle sandbox with walls and color.</p>
+    </section>
+
+    <!-- Teacher Instructions -->
+    <div class="teacher-instructions">
+      <h2>Teacher Instructions</h2>
+      <ol>
+        <li>Verify each student still has their Week 1 file saved in Google Drive.</li>
+        <li>Review Orbit, Pan, and Zoom quickly before starting new content.</li>
+        <li>Demonstrate the Line tool with typed dimensions (5m, 3m, etc.).</li>
+        <li>Show how inference colors (red, green, blue) appear while drawing.</li>
+        <li>Demonstrate the Offset tool for creating wall thickness.</li>
+        <li>Show how to make a cylinder using Circle + Push/Pull.</li>
+        <li>Guide students through building the table step by step.</li>
+        <li>Assist students who struggle with typing exact dimensions.</li>
+        <li>Demonstrate Ctrl+C and Ctrl+V for copying legs.</li>
+        <li>Circulate the room during the table activity.</li>
+        <li>Remind students to use the Eraser tool to clean up geometry.</li>
+        <li>Verify each student's file is named correctly and saved.</li>
+        <li>Collect exit tickets or ask quick review questions before dismissal.</li>
+        <li>Note which students need extra support in Week 3.</li>
+      </ol>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-buttons">
+      <a href="week1.html" class="back-btn">&larr; Back: Week 1</a>
+      <a href="week3.html" class="next-btn">Next Lesson: Turtle Sandbox &rarr;</a>
+    </div>
+
+  </div>
+
+    <!-- 🐕 Dog chase timer: every 10 minutes -->
+  <script>
+    const dogChaser = document.getElementById('dogChaser');
+    const dogChased = document.getElementById('dogChased');
+
+    let chaseRunning = false;
+
+    function dogChase() {
+      if (chaseRunning) return;
+      chaseRunning = true;
+
+      dogChaser.classList.add('run');
+      dogChased.classList.add('run');
+
+      setTimeout(() => {
+        dogChaser.classList.remove('run');
+        dogChased.classList.remove('run');
+        chaseRunning = false;
+      }, 14000);
+    }
+
+    // First chase after 10 seconds (for testing)
+    setTimeout(dogChase, 10000);
+
+    // Then every 10 minutes (600,000 ms)
+    setInterval(dogChase, 600000);
+  
+  </script>
+
+</body>
+</html>

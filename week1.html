@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 1 — Introduction to 3D Modeling &amp; SketchUp Basics</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #FFF6EB;
+      color: #2B2018;
+      line-height: 1.7;
+      padding: 40px 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #FFF6EB;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(43, 32, 24, 0.25);
+      overflow: hidden;
+      border: 1px solid #E7D6C4;
+      position: relative;
+    }
+
+    /* Header */
+    header {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 45px 40px;
+      text-align: center;
+    }
+
+    header .week-label {
+      color: #C7AD94;
+      font-size: 0.95em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #FFF6EB;
+    }
+
+    header .subtitle {
+      color: #C7AD94;
+      font-size: 1em;
+    }
+
+    /* Content sections */
+    section {
+      padding: 30px 40px;
+      border-bottom: 1px solid #E7D6C4;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    h2 {
+      color: #2B2018;
+      font-size: 1.4em;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #C7AD94;
+    }
+
+    h3 {
+      color: #8A6E57;
+      font-size: 1.1em;
+      margin: 20px 0 10px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: #2B2018;
+    }
+
+    ul, ol {
+      margin: 10px 0 15px 25px;
+      color: #2B2018;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* Welcome box */
+    .welcome {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 18px 22px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    /* Goal box */
+    .goal {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .goal ul {
+      margin-bottom: 0;
+    }
+
+    /* Activity blocks */
+    .activity {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 18px;
+    }
+
+    .activity h3 {
+      color: #2B2018;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .activity .time {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      font-size: 0.8em;
+      padding: 3px 12px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    /* Tip box */
+    .tip {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 14px 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+      font-style: italic;
+    }
+
+    /* Video button */
+    .video-wrap {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .stylish-link {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      border-radius: 6px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      border: 2px solid #2B2018;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .stylish-link:hover {
+      background-color: #2B2018;
+      color: #FFF6EB;
+      transform: translateY(-2px);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 0.95em;
+    }
+
+    th {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #E7D6C4;
+      color: #2B2018;
+    }
+
+    tr:nth-child(even) td {
+      background: #FFF6EB;
+    }
+
+    tr:hover td {
+      background: #E7D6C4;
+    }
+
+    /* Step boxes */
+    .step {
+      background: #E7D6C4;
+      border-radius: 8px;
+      padding: 14px 20px;
+      margin: 12px 0;
+    }
+
+    .step strong {
+      color: #2B2018;
+    }
+
+    /* Check yourself */
+    .check {
+      background: #FFF6EB;
+      border: 2px dashed #8A6E57;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .check ul {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .check li::before {
+      content: "☐ ";
+      color: #8A6E57;
+      font-weight: bold;
+    }
+
+    /* Teacher instructions */
+    .teacher-instructions {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 30px 40px;
+    }
+
+    .teacher-instructions h2 {
+      color: #FFF6EB;
+      border-bottom: 2px solid #8A6E57;
+    }
+
+    .teacher-instructions ol {
+      margin-left: 25px;
+      color: #FFF6EB;
+    }
+
+    .teacher-instructions li {
+      margin-bottom: 8px;
+      color: #E7D6C4;
+    }
+
+    /* Navigation buttons */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 25px 40px;
+      background: #E7D6C4;
+      border-top: 3px solid #8A6E57;
+      flex-wrap: wrap;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: #FFF6EB;
+      color: #2B2018;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      border: 2px solid #8A6E57;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #8A6E57;
+      color: #FFF6EB;
+    }
+
+    .next-btn {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      margin-left: auto;
+    }
+
+    .next-btn:hover {
+      background: #2B2018;
+    }
+
+    /* ✈️ Airplane dogfight animation */
+    .airplane {
+      position: fixed;
+      font-size: 2em;
+      color: #8A6E57;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .airplane.left {
+      left: -100px;
+      top: 20%;
+    }
+
+    .airplane.right {
+      right: -100px;
+      top: 35%;
+      transform: scaleX(-1);
+    }
+
+    .airplane.left.fly {
+      animation: flyLeftToRight 14s linear forwards;
+      opacity: 1;
+    }
+
+    .airplane.right.fly {
+      animation: flyRightToLeft 14s linear forwards;
+      opacity: 1;
+    }
+
+    @keyframes flyLeftToRight {
+      0%   { left: -100px; top: 20%; transform: rotate(0deg); }
+      20%  { top: 12%; transform: rotate(10deg); }
+      40%  { top: 28%; transform: rotate(-12deg); }
+      50%  { top: 22%; transform: rotate(0deg); }
+      60%  { top: 30%; transform: rotate(8deg); }
+      80%  { top: 15%; transform: rotate(-10deg); }
+      100% { left: 110%; top: 20%; transform: rotate(0deg); }
+    }
+
+    @keyframes flyRightToLeft {
+      0%   { right: -100px; top: 35%; transform: scaleX(-1) rotate(0deg); }
+      20%  { top: 28%; transform: scaleX(-1) rotate(-10deg); }
+      40%  { top: 15%; transform: scaleX(-1) rotate(12deg); }
+      50%  { top: 22%; transform: scaleX(-1) rotate(0deg); }
+      60%  { top: 12%; transform: scaleX(-1) rotate(-8deg); }
+      80%  { top: 30%; transform: scaleX(-1) rotate(10deg); }
+      100% { right: 110%; top: 35%; transform: scaleX(-1) rotate(0deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5em; }
+      section, .teacher-instructions { padding: 22px; }
+      .activity { padding: 16px; }
+      .nav-buttons {
+        flex-direction: column;
+        padding: 20px;
+      }
+      .next-btn, .back-btn {
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✈️ Two airplanes dogfighting -->
+  <div class="airplane left" id="planeLeft">✈️</div>
+  <div class="airplane right" id="planeRight">✈️</div>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="week-label">Week 1</div>
+      <h1>Introduction to 3D Modeling &amp; SketchUp Basics</h1>
+      <div class="subtitle">What is 3D modeling, and how do I navigate SketchUp?</div>
+    </header>
+
+    <!-- Welcome -->
+    <section>
+      <h2>Welcome!</h2>
+      <div class="welcome">
+        <p>Have you ever wondered how video game worlds, animated movies, or new products are created before they exist in real life?</p>
+        <p>This week, you'll take your first step into <strong>3D modeling</strong> — the skill behind games, movies, architecture, and even medical prosthetics. You'll open <strong>SketchUp for Schools</strong>, learn how to move around in 3D space, and build your very first 3D object.</p>
+        <p>No experience needed. Just curiosity and a mouse!</p>
+      </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section>
+      <h2>What You'll Learn This Week</h2>
+      <div class="goal">
+        <ul>
+          <li>What 3D modeling is and why it matters in real life</li>
+          <li>How to navigate SketchUp using Orbit, Pan, and Zoom</li>
+          <li>How to use the Rectangle and Push/Pull tools to build a 3D box</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section>
+      <h2>Let's Begin</h2>
+
+      <div class="activity">
+        <span class="time">15 minutes</span>
+        <h3>1. Think About It: How Are Game Worlds Made?</h3>
+        <p>Watch the short clip your teacher shows. Then think about these questions:</p>
+        <ul>
+          <li>How do you think this world was created?</li>
+          <li>Where does it exist before it appears on screen?</li>
+          <li>What other things might be designed in 3D before being made?</li>
+        </ul>
+        <div class="tip">
+          Every 3D object in a game or movie starts as a <strong>3D model</strong> — a digital object built on a computer.
+        </div>
+        <div class="video-wrap">
+          <a href="https://www.youtube.com/watch?v=cAr7aj_MPMc" target="_blank" rel="noopener noreferrer" class="stylish-link">▶ Watch the Video Clip</a>
+        </div>
+      </div>
+
+      <div class="activity">
+        <span class="time">15 minutes</span>
+        <h3>2. 3D Modeling in Real Life</h3>
+        <p>3D modeling isn't just for games. Look at how it's used in the real world:</p>
+        <ul>
+          <li><strong>Architecture:</strong> Buildings designed before construction</li>
+          <li><strong>Engineering:</strong> Car parts tested virtually</li>
+          <li><strong>Medical:</strong> Custom prosthetics for patients</li>
+          <li><strong>Products:</strong> Phone cases, furniture, toys</li>
+        </ul>
+        <div class="tip">
+          3D modeling lets people design, test, and improve things before spending money to build them. By Week 7, <em>you'll</em> design your own model that solves a real problem.
+        </div>
+        <div class="tip">
+          <strong>Fun fact:</strong> 3D modeling is also used in movies to create characters, props, and entire worlds that don't exist in real life.
+        </div>
+      </div>
+
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>3. Open SketchUp for Schools</h3>
+        <p>Open SketchUp for Schools in your browser. Follow along as your teacher points out these parts:</p>
+        <ul>
+          <li><strong>Main Menu</strong> (top) — Model name, Undo, Redo, Save</li>
+          <li><strong>Toolsets</strong> (left/toolbar) — Where your tools live</li>
+          <li><strong>Panels</strong> (right side) — Entity Info, Materials, Instructor, 3D Warehouse</li>
+          <li><strong>Measurements Box</strong> (bottom right) — Where you type exact sizes</li>
+        </ul>
+        <div class="tip">
+          Click each area so you know where it is. If you get lost, open the <strong>Instructor</strong> panel — it explains whatever tool you're using.
+        </div>
+      </div>
+
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>4. Learn to Move Around: Orbit, Pan, Zoom</h3>
+        <p>Before you build anything, you need to move around in 3D space. Try each tool:</p>
+        <table>
+          <tr>
+            <th>Tool</th>
+            <th>What It Does</th>
+            <th>Shortcut</th>
+          </tr>
+          <tr>
+            <td><strong>Orbit</strong></td>
+            <td>Rotate around your model — like walking around a statue</td>
+            <td>O</td>
+          </tr>
+          <tr>
+            <td><strong>Pan</strong></td>
+            <td>Move your view left, right, up, or down</td>
+            <td>H</td>
+          </tr>
+          <tr>
+            <td><strong>Zoom</strong></td>
+            <td>Move closer or farther from your model</td>
+            <td>Z</td>
+          </tr>
+          <tr>
+            <td><strong>Zoom Extents</strong></td>
+            <td>Instantly see your whole model</td>
+            <td>Shift + Z</td>
+          </tr>
+        </table>
+        <p><strong>Mouse shortcuts (much faster):</strong></p>
+        <ul>
+          <li><strong>Orbit:</strong> Hold the middle mouse button and drag</li>
+          <li><strong>Pan:</strong> Hold middle + left mouse button and drag</li>
+          <li><strong>Zoom:</strong> Scroll the wheel</li>
+        </ul>
+        <p><strong>Your practice task:</strong></p>
+        <ol>
+          <li>Orbit all the way around the object</li>
+          <li>Pan to the left</li>
+          <li>Zoom in on one corner</li>
+          <li>Press Shift + Z to see everything again</li>
+        </ol>
+        <div class="tip">
+          Using a trackpad? Orbit can be tricky. Ask your teacher for the trackpad shortcut.
+        </div>
+      </div>
+
+      <div class="activity">
+        <span class="time">25 minutes</span>
+        <h3>5. Build Your First 3D Object</h3>
+        <p>This is the magic moment — turning a flat shape into a 3D object.</p>
+
+        <div class="step">
+          <strong>Step 1: Draw the base</strong>
+          <ul>
+            <li>Select the <strong>Rectangle</strong> tool</li>
+            <li>Click once to start, click again to finish</li>
+            <li>Want exact size? Type <code>5m, 3m</code> and press Enter</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <strong>Step 2: Push/Pull into 3D</strong>
+          <ul>
+            <li>Select the <strong>Push/Pull</strong> tool (or press <strong>P</strong>)</li>
+            <li>Click the rectangle face — it becomes shaded</li>
+            <li>Move your cursor up — the box grows</li>
+            <li>Click to set the height</li>
+            <li>Want exact height? Type <code>2m</code> and press Enter</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <strong>Step 3: Explore</strong>
+          <ul>
+            <li>Orbit around your new box</li>
+            <li>Press Shift + Z to center it</li>
+            <li>Try Push/Pull again to make it taller or shorter</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          You just made a 3D object from a 2D drawing. This is exactly how every 3D model starts!
+        </div>
+      </div>
+
+      <div class="activity">
+        <span class="time">5 minutes</span>
+        <h3>6. Save Your Work</h3>
+        <ol>
+          <li>Click the model name at the top of the screen</li>
+          <li>Rename it: <code>week#-studentid-firstname-lastname</code></li>
+          <li>Click <strong>Save</strong></li>
+          <li>Check that it appears in your Google Drive</li>
+        </ol>
+        <div class="tip">
+          Ask a neighbor to confirm your file saved correctly. Saving now means you won't lose your work next week.
+        </div>
+      </div>
+    </section>
+
+    <!-- Check Yourself -->
+    <section>
+      <h2>Check Yourself</h2>
+      <p>Before you finish, make sure you can do all of these:</p>
+      <div class="check">
+        <ul>
+          <li>I can orbit around my model</li>
+          <li>I can pan my view</li>
+          <li>I can zoom in and out</li>
+          <li>I can draw a rectangle</li>
+          <li>I can push/pull it into a 3D box</li>
+          <li>I saved my file correctly</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Key Terms -->
+    <section>
+      <h2>Key Words to Remember</h2>
+      <table>
+        <tr>
+          <th>Term</th>
+          <th>What It Means</th>
+        </tr>
+        <tr><td>3D Model</td><td>A digital object with height, width, and depth</td></tr>
+        <tr><td>Axis</td><td>The three lines (red, green, blue) that show direction in 3D space</td></tr>
+        <tr><td>Origin</td><td>The center point where all three axes meet</td></tr>
+        <tr><td>Orbit</td><td>Rotate your view around the model</td></tr>
+        <tr><td>Pan</td><td>Move your view side to side or up and down</td></tr>
+        <tr><td>Zoom</td><td>Move closer or farther from the model</td></tr>
+        <tr><td>Push/Pull</td><td>Extend a flat face into 3D (or cut into a model)</td></tr>
+      </table>
+    </section>
+
+    <!-- Quick Check -->
+    <section>
+      <h2>Quick Check</h2>
+      <p>Answer these in your head or on paper:</p>
+      <ol>
+        <li>What does the Push/Pull tool do?</li>
+        <li>Name one real-world job that uses 3D modeling.</li>
+        <li>Which shortcut lets you see your whole model instantly?</li>
+      </ol>
+    </section>
+
+    <!-- Homework -->
+    <section>
+      <h2>Optional Homework</h2>
+      <ul>
+        <li>If you have SketchUp at home, create 3 boxes of different sizes</li>
+        <li>Or: sketch on paper one object you'd like to 3D model by Week 7</li>
+      </ul>
+    </section>
+
+    <!-- Next Week -->
+    <section>
+      <h2>Coming Next Week</h2>
+      <p><strong>Week 2: Drawing Tools &amp; Precision Modeling</strong> — You'll learn to draw accurately with the Line, Offset, and Circle tools, and build a simple table.</p>
+    </section>
+
+    <!-- Teacher Instructions -->
+    <div class="teacher-instructions">
+      <h2>Teacher Instructions</h2>
+      <ol>
+        <li>Follow the filename format strictly: <code>week#-studentid-firstname-lastname</code>. Points will be deducted if not followed.</li>
+        <li>Late projects will be accepted with a corresponding point reduction.</li>
+      </ol>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-buttons">
+      <a href="index.html" class="back-btn">&larr; Back to Unit Index</a>
+      <a href="week2.html" class="next-btn">Next Lesson: Drawing Tools &amp; Precision Modeling &rarr;</a>
+    </div>
+
+  </div>
+
+  <!-- ✈️ Airplane dogfight timer: every 10 minutes -->
+  <script>
+    const planeLeft = document.getElementById('planeLeft');
+    const planeRight = document.getElementById('planeRight');
+
+    let dogfightRunning = false;
+
+    function dogfight() {
+      if (dogfightRunning) return; // prevent overlap
+      dogfightRunning = true;
+
+      planeLeft.classList.add('fly');
+      planeRight.classList.add('fly');
+
+      // Remove the class after the animation ends (14s)
+      setTimeout(() => {
+        planeLeft.classList.remove('fly');
+        planeRight.classList.remove('fly');
+        dogfightRunning = false;
+      }, 14000);
+    }
+
+    // First flight after 10 seconds (so you can see it immediately on load)
+    setTimeout(dogfight, 10000);
+
+    // Then every 10 minutes (600,000 ms)
+    setInterval(dogfight, 600000);
+  </script>
+
+</body>
+</html>
