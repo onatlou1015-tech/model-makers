@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 4 — Pirate Ship Playhouse: Hull &amp; Deck</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #FFF6EB;
+      color: #2B2018;
+      line-height: 1.7;
+      padding: 40px 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #FFF6EB;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(43, 32, 24, 0.25);
+      overflow: hidden;
+      border: 1px solid #E7D6C4;
+      position: relative;
+    }
+
+    /* Header */
+    header {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 45px 40px;
+      text-align: center;
+    }
+
+    header .week-label {
+      color: #C7AD94;
+      font-size: 0.95em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #FFF6EB;
+    }
+
+    header .subtitle {
+      color: #C7AD94;
+      font-size: 1em;
+    }
+
+    /* Content sections */
+    section {
+      padding: 30px 40px;
+      border-bottom: 1px solid #E7D6C4;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    h2 {
+      color: #2B2018;
+      font-size: 1.4em;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #C7AD94;
+    }
+
+    h3 {
+      color: #8A6E57;
+      font-size: 1.1em;
+      margin: 20px 0 10px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: #2B2018;
+    }
+
+    ul, ol {
+      margin: 10px 0 15px 25px;
+      color: #2B2018;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* Welcome box */
+    .welcome {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 18px 22px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    /* Goal box */
+    .goal {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .goal ul {
+      margin-bottom: 0;
+    }
+
+    /* Activity blocks */
+    .activity {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 18px;
+    }
+
+    .activity h3 {
+      color: #2B2018;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .activity .time {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      font-size: 0.8em;
+      padding: 3px 12px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    /* Tip box */
+    .tip {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 14px 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+      font-style: italic;
+    }
+
+    /* Warning box */
+    .warning {
+      background: #FFF6EB;
+      border-left: 5px solid #2B2018;
+      padding: 14px 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+
+    /* Video button */
+    .video-wrap {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .stylish-link {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      border-radius: 6px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      border: 2px solid #2B2018;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .stylish-link:hover {
+      background-color: #2B2018;
+      color: #FFF6EB;
+      transform: translateY(-2px);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 0.95em;
+    }
+
+    th {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #E7D6C4;
+      color: #2B2018;
+    }
+
+    tr:nth-child(even) td {
+      background: #FFF6EB;
+    }
+
+    tr:hover td {
+      background: #E7D6C4;
+    }
+
+    /* Step boxes */
+    .step {
+      background: #E7D6C4;
+      border-radius: 8px;
+      padding: 14px 20px;
+      margin: 12px 0;
+    }
+
+    .step strong {
+      color: #2B2018;
+    }
+
+    /* Check yourself */
+    .check {
+      background: #FFF6EB;
+      border: 2px dashed #8A6E57;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .check ul {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .check li::before {
+      content: "☐ ";
+      color: #8A6E57;
+      font-weight: bold;
+    }
+
+    /* Teacher instructions */
+    .teacher-instructions {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 30px 40px;
+    }
+
+    .teacher-instructions h2 {
+      color: #FFF6EB;
+      border-bottom: 2px solid #8A6E57;
+    }
+
+    .teacher-instructions ol {
+      margin-left: 25px;
+      color: #FFF6EB;
+    }
+
+    .teacher-instructions li {
+      margin-bottom: 8px;
+      color: #E7D6C4;
+    }
+
+    /* Navigation buttons */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 25px 40px;
+      background: #E7D6C4;
+      border-top: 3px solid #8A6E57;
+      flex-wrap: wrap;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: #FFF6EB;
+      color: #2B2018;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      border: 2px solid #8A6E57;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #8A6E57;
+      color: #FFF6EB;
+    }
+
+    .next-btn {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      margin-left: auto;
+    }
+
+    .next-btn:hover {
+      background: #2B2018;
+    }
+
+    /* 🌸 Falling flower petals animation */
+    .petal-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9998;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .petal-container.active {
+      opacity: 1;
+    }
+
+    .petal {
+      position: absolute;
+      top: -40px;
+      font-size: 1.4em;
+      opacity: 0.7;
+      animation: petalFall linear infinite;
+    }
+
+    @keyframes petalFall {
+      0% {
+        transform: translateY(-40px) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateY(50vh) translateX(30px) rotate(180deg);
+      }
+      90% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(110vh) translateX(-30px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5em; }
+      section, .teacher-instructions { padding: 22px; }
+      .activity { padding: 16px; }
+      .nav-buttons {
+        flex-direction: column;
+        padding: 20px;
+      }
+      .next-btn, .back-btn {
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🌸 Falling flower petals overlay -->
+  <div class="petal-container" id="petalContainer"></div>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="week-label">Week 4</div>
+      <h1>Pirate Ship Playhouse: Hull &amp; Deck</h1>
+      <div class="subtitle">Building complex geometry with Offset and Move</div>
+    </header>
+
+    <!-- Welcome -->
+    <section>
+      <h2>Welcome Back!</h2>
+      <div class="welcome">
+        <p>You've built a table and a sandbox. Now it's time to build something bigger and more complex — a <strong>pirate ship playhouse</strong>.</p>
+        <p>Over the next two weeks, you'll build a full pirate ship model using everything you've learned. This week, we focus on the two biggest parts: the <strong>hull</strong> (the body of the ship) and the <strong>deck</strong> (the flat surface on top).</p>
+        <p>You'll also learn about <strong>solid geometry</strong> — an important idea for 3D printing.</p>
+      </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section>
+      <h2>What You'll Learn This Week</h2>
+      <div class="goal">
+        <ul>
+          <li>Use <strong>Offset</strong> to create the hull's inner walls</li>
+          <li>Use <strong>Move</strong> and <strong>Copy</strong> to position the deck</li>
+          <li>Understand what a <strong>"solid group"</strong> is for 3D printing</li>
+          <li>Build the hull and deck of a pirate ship</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section>
+      <h2>Let's Begin</h2>
+
+      <!-- Activity 1 -->
+      <div class="activity">
+        <span class="time">10 minutes</span>
+        <h3>1. Warm-Up: Recap the Sandbox</h3>
+        <p>Before we start the ship, let's review what you built last week. Open your Turtle Sandbox model.</p>
+        <p><strong>Quick review:</strong></p>
+        <ol>
+          <li>Orbit around your sandbox</li>
+          <li>Check that all four walls are the same height</li>
+          <li>Confirm that all parts are connected (no floating walls)</li>
+          <li>Point out where you used <strong>Offset</strong> and where you used <strong>Push/Pull</strong></li>
+        </ol>
+        <div class="tip">
+          The same skills you used for the sandbox will be used for the ship — just on a larger scale.
+        </div>
+        <div class="warning">
+          <strong>Reminder:</strong> Save your work with the format <code>week#-studentid-firstname-lastname</code>.
+        </div>
+      </div>
+
+      <!-- Activity 2 -->
+      <div class="activity">
+        <span class="time">15 minutes</span>
+        <h3>2. Ship Shape: Base Rectangle + Triangles</h3>
+        <p>Pirate ships have a pointed front (the <strong>bow</strong>) and a flatter back (the <strong>stern</strong>). To make this shape, we'll start with a rectangle, then add triangles to the ends.</p>
+
+        <p><strong>Step 1: Draw the main body</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select the <strong>Rectangle</strong> tool (R)</li>
+            <li>Draw a rectangle — type <code>4m, 1.5m</code> — press Enter</li>
+            <li>This is the main body of the hull</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Draw the bow (front triangle)</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select the <strong>Line</strong> tool (L)</li>
+            <li>Draw a line from the top-left corner going forward</li>
+            <li>Draw a line from the bottom-left corner meeting the first line</li>
+            <li>This creates a triangle — the pointed front of the ship</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Draw the stern (back triangle)</strong></p>
+        <div class="step">
+          <ul>
+            <li>Repeat the same steps on the right side</li>
+            <li>Draw a triangle extending from the right edge</li>
+            <li>This creates the back of the ship</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 4: Clean up</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select the <strong>Eraser</strong> tool (E)</li>
+            <li>Remove the lines where the rectangle and triangles overlap</li>
+            <li>You should now have one continuous pointed shape — the top view of a ship</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>Inference lines are your friend.</strong> When drawing, SketchUp shows green, red, and blue hint lines that help you align to edges and endpoints.
+        </div>
+      </div>
+
+      <!-- Activity 3 -->
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>3. The Hull: Offset + Move</h3>
+        <p>Now we'll give the hull shape its depth. The hull is the curved body of the ship — its outer and inner walls.</p>
+
+        <p><strong>Step 1: Extrude the hull upward</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select <strong>Push/Pull</strong> (P)</li>
+            <li>Click the flat ship shape</li>
+            <li>Pull it up — type <code>1m</code> — press Enter</li>
+            <li>You now have a tall block in the shape of a ship</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Create the inner hull with Offset</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select the <strong>Offset</strong> tool (F)</li>
+            <li>Click on the top edge of the hull</li>
+            <li>Move inward and type <code>20cm</code> — press Enter</li>
+            <li>You now have an inner shape that follows the ship's outline</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Push down the inner hull</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select <strong>Push/Pull</strong></li>
+            <li>Click the inner top face</li>
+            <li>Push it downward — but do NOT go all the way through</li>
+            <li>Stop about <code>20cm</code> from the bottom</li>
+            <li>This creates the "cup" shape — the inside of the hull</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 4: Use Move to fine-tune</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select the <strong>Move</strong> tool (M)</li>
+            <li>Practice moving parts of the hull up and down</li>
+            <li>Press <strong>Ctrl + Z</strong> to undo if something goes wrong</li>
+          </ul>
+        </div>
+
+        <div class="warning">
+          <strong>Don't push through the bottom!</strong> If you push the inner hull all the way through, it creates a hole. Undo and try again.
+        </div>
+      </div>
+
+      <!-- Activity 4 -->
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>4. The Deck: Offset + Push/Pull</h3>
+        <p>The deck is the flat floor of the ship — where pirates walk. It sits on top of the hull, inside the walls.</p>
+
+        <p><strong>Step 1: Draw the deck</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select the <strong>Rectangle</strong> tool</li>
+            <li>Draw a rectangle that fits inside the hull</li>
+            <li>Or use <strong>Offset</strong> again to create the exact shape</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Give the deck thickness</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select <strong>Push/Pull</strong></li>
+            <li>Pull it up slightly — type <code>10cm</code></li>
+            <li>This is the deck's thickness</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Position the deck with Move</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select the deck (use <strong>Select</strong> tool — spacebar)</li>
+            <li>Right-click → <strong>Group</strong></li>
+            <li>Select <strong>Move</strong> tool (M)</li>
+            <li>Move the deck down into the hull</li>
+            <li>It should rest about <code>20cm</code> below the top of the hull walls</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 4: Copy the deck (optional)</strong></p>
+        <div class="step">
+          <ul>
+            <li>With the deck selected, press <strong>Ctrl + C</strong> then <strong>Ctrl + V</strong></li>
+            <li>Use <strong>Move</strong> to place the copy as a lower deck</li>
+            <li>Real pirate ships often have multiple decks!</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>Move + Copy shortcut:</strong> Select the object, press <strong>M</strong>, then hold <strong>Ctrl</strong> while moving. This copies instead of moves.
+        </div>
+      </div>
+
+      <!-- Activity 5 -->
+      <div class="activity">
+        <span class="time">25 minutes</span>
+        <h3>5. Build Hull + Deck (Your Turn)</h3>
+        <p>Now it's your turn to build the hull and deck. Follow the same steps, but make it your own ship.</p>
+
+        <p><strong>Required features:</strong></p>
+        <ul>
+          <li>A pointed front (bow) and back (stern)</li>
+          <li>A hull with walls and a hollow inside</li>
+          <li>A deck positioned inside the hull</li>
+          <li>All parts connected — no floating pieces</li>
+        </ul>
+
+        <p><strong>Suggested dimensions:</strong></p>
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Suggested Size</th>
+          </tr>
+          <tr><td>Hull length</td><td>5m</td></tr>
+          <tr><td>Hull width</td><td>2m</td></tr>
+          <tr><td>Hull height</td><td>1.2m</td></tr>
+          <tr><td>Hull wall thickness</td><td>20cm</td></tr>
+          <tr><td>Deck thickness</td><td>10cm</td></tr>
+          <tr><td>Deck depth below rim</td><td>20cm</td></tr>
+        </table>
+
+        <p><strong>Optional extras (if you have time):</strong></p>
+        <ul>
+          <li>Add a curved front by pushing/pulling the bow inward</li>
+          <li>Add a second lower deck</li>
+          <li>Add a small staircase using the Line tool</li>
+        </ul>
+
+        <div class="tip">
+          <strong>Save often.</strong> Press <strong>Ctrl + S</strong> after every major step. You don't want to lose 25 minutes of work.
+        </div>
+      </div>
+
+      <!-- Activity 6 -->
+      <div class="activity">
+        <span class="time">10 minutes</span>
+        <h3>6. Check for "Solid Group"</h3>
+        <p>A <strong>solid group</strong> is a 3D object that is completely closed — like a watertight container. Only solid groups can be 3D printed.</p>
+
+        <p><strong>What is a solid group?</strong></p>
+        <ul>
+          <li>Every edge is shared by exactly 2 faces</li>
+          <li>There are no gaps, holes, or open faces</li>
+          <li>It's the equivalent of a sealed box</li>
+        </ul>
+
+        <p><strong>How to check your model:</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select your entire model (drag a box around it with the Select tool)</li>
+            <li>Right-click → <strong>Group</strong></li>
+            <li>Look at the <strong>Entity Info</strong> panel on the right</li>
+            <li>It should say <strong>"Solid Group"</strong></li>
+            <li>If it just says "Group" — your model has holes or open faces</li>
+          </ul>
+        </div>
+
+        <p><strong>How to fix a non-solid group:</strong></p>
+        <ol>
+          <li>Use the <strong>Eraser</strong> tool to remove stray lines</li>
+          <li>Use <strong>Line</strong> tool to close any gaps</li>
+          <li>Look for inside-out faces (they appear dark gray/blue)</li>
+          <li>Right-click a bad face → <strong>Reverse Faces</strong></li>
+        </ol>
+
+        <p><strong>Save your work:</strong></p>
+        <ol>
+          <li>Click the model name at the top</li>
+          <li>Rename it: <code>week4-studentid-firstname-lastname</code></li>
+          <li>Click <strong>Save</strong></li>
+          <li>Verify it appears in your Google Drive</li>
+        </ol>
+
+        <div class="warning">
+          <strong>Don't worry if it's not perfect yet.</strong> Solid geometry is tricky. We'll keep working on it in Week 5 when we add the cabin and portholes.
+        </div>
+      </div>
+    </section>
+
+    <!-- Check Yourself -->
+    <section>
+      <h2>Check Yourself</h2>
+      <p>Before you finish, make sure you can do all of these:</p>
+      <div class="check">
+        <ul>
+          <li>I can draw a shape using Rectangle + Line</li>
+          <li>I can use Offset to create inner walls</li>
+          <li>I can use Push/Pull carefully without pushing through</li>
+          <li>I can use Move to position objects</li>
+          <li>I can use Copy to duplicate objects</li>
+          <li>I can check if my model is a Solid Group</li>
+          <li>I saved my file correctly</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Key Terms -->
+    <section>
+      <h2>Key Words to Remember</h2>
+      <table>
+        <tr>
+          <th>Term</th>
+          <th>What It Means</th>
+        </tr>
+        <tr><td>Offset</td><td>Creating a copy of a shape at a set distance — used for walls and borders</td></tr>
+        <tr><td>Move</td><td>Moving an object from one place to another</td></tr>
+        <tr><td>Copy</td><td>Duplicating an object so you have two of them</td></tr>
+        <tr><td>Solid Group</td><td>A completely closed 3D object with no gaps — required for 3D printing</td></tr>
+      </table>
+    </section>
+
+    <!-- Quick Check -->
+    <section>
+      <h2>Quick Check</h2>
+      <p>Answer these in your head or on paper:</p>
+      <ol>
+        <li>What tool creates the inner walls of the hull?</li>
+        <li>How do you copy an object while moving it?</li>
+        <li>What does "Solid Group" mean?</li>
+        <li>What do you do if your group isn't solid?</li>
+      </ol>
+    </section>
+
+    <!-- Homework -->
+    <section>
+      <h2>Optional Homework</h2>
+      <ul>
+        <li>Sketch the cabin you'd like to add to your pirate ship next week</li>
+        <li>Decide where portholes (round windows) should go</li>
+        <li>If you have SketchUp at home, experiment with different hull shapes</li>
+      </ul>
+    </section>
+
+    <!-- Next Week -->
+    <section>
+      <h2>Coming Next Week</h2>
+      <p><strong>Week 5: Pirate Ship Playhouse — Cabin, Portholes &amp; Details</strong> — You'll add the ship's cabin, round portholes, and the plank. Then you'll finalize your model for 3D printing.</p>
+    </section>
+
+    <!-- Teacher Instructions -->
+    <div class="teacher-instructions">
+      <h2>Teacher Instructions</h2>
+      <ol>
+        <li>Verify each student still has their Week 3 sandbox saved in Google Drive.</li>
+        <li>Review Offset and Push/Pull quickly before starting new content.</li>
+        <li>Demonstrate how to draw the pointed ship shape with Rectangle + Line.</li>
+        <li>Show how inference lines help align edges.</li>
+        <li>Demonstrate Offset to create the inner hull.</li>
+        <li>Show how to Push/Pull the inner hull without going through the bottom.</li>
+        <li>Demonstrate Move and Ctrl + Copy to duplicate the deck.</li>
+        <li>Guide students through building their own hull and deck.</li>
+        <li>Circulate and assist students who struggle with solid geometry.</li>
+        <li>Demonstrate how to check for a Solid Group using Entity Info.</li>
+        <li>Show how to fix common non-solid issues (stray lines, reversed faces).</li>
+        <li>Remind students to save often with Ctrl + S.</li>
+        <li>Verify each student's file is named and saved correctly.</li>
+        <li>Note which students need extra support in Week 5.</li>
+      </ol>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-buttons">
+      <a href="week3.html" class="back-btn">&larr; Back: Week 3</a>
+      <a href="week5.html" class="next-btn">Next Lesson: Cabin, Portholes &amp; Details &rarr;</a>
+    </div>
+
+  </div>
+
+  <!-- 🌸 Falling flower petals timer -->
+  <script>
+    const petalContainer = document.getElementById('petalContainer');
+    const petalEmojis = ['🌸', '🌺', '🌼', '🌷', '💮'];
+
+    function createPetals() {
+      // Clear any existing petals
+      petalContainer.innerHTML = '';
+
+      // Create 40 petals with random positions and speeds
+      for (let i = 0; i < 40; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.fontSize = (1 + Math.random() * 0.8) + 'em';
+        petal.style.animationDuration = (5 + Math.random() * 4) + 's';
+        petal.style.animationDelay = (Math.random() * 3) + 's';
+        petalContainer.appendChild(petal);
+      }
+
+      // Show the petals
+      petalContainer.classList.add('active');
+
+      // Let them fall for 20 seconds
+      setTimeout(() => {
+        petalContainer.classList.remove('active');
+      }, 20000);
+    }
+
+    // First shower after 10 seconds (for testing)
+    setTimeout(createPetals, 10000);
+
+    // Then every 10 minutes (600,000 ms)
+    setInterval(createPetals, 600000);
+  </script>
+
+</body>
+</html>

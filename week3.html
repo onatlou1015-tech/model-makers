@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 3 — Turtle Sandbox (Beginner Project)</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #FFF6EB;
+      color: #2B2018;
+      line-height: 1.7;
+      padding: 40px 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #FFF6EB;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(43, 32, 24, 0.25);
+      overflow: hidden;
+      border: 1px solid #E7D6C4;
+      position: relative;
+    }
+
+    /* Header */
+    header {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 45px 40px;
+      text-align: center;
+    }
+
+    header .week-label {
+      color: #C7AD94;
+      font-size: 0.95em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #FFF6EB;
+    }
+
+    header .subtitle {
+      color: #C7AD94;
+      font-size: 1em;
+    }
+
+    /* Content sections */
+    section {
+      padding: 30px 40px;
+      border-bottom: 1px solid #E7D6C4;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    h2 {
+      color: #2B2018;
+      font-size: 1.4em;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #C7AD94;
+    }
+
+    h3 {
+      color: #8A6E57;
+      font-size: 1.1em;
+      margin: 20px 0 10px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: #2B2018;
+    }
+
+    ul, ol {
+      margin: 10px 0 15px 25px;
+      color: #2B2018;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* Welcome box */
+    .welcome {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 18px 22px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    /* Goal box */
+    .goal {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .goal ul {
+      margin-bottom: 0;
+    }
+
+    /* Activity blocks */
+    .activity {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 18px;
+    }
+
+    .activity h3 {
+      color: #2B2018;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .activity .time {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      font-size: 0.8em;
+      padding: 3px 12px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    /* Tip box */
+    .tip {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 14px 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+      font-style: italic;
+    }
+
+    /* Warning box */
+    .warning {
+      background: #FFF6EB;
+      border-left: 5px solid #2B2018;
+      padding: 14px 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+
+    /* Video button */
+    .video-wrap {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .stylish-link {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      border-radius: 6px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      border: 2px solid #2B2018;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .stylish-link:hover {
+      background-color: #2B2018;
+      color: #FFF6EB;
+      transform: translateY(-2px);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 0.95em;
+    }
+
+    th {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #E7D6C4;
+      color: #2B2018;
+    }
+
+    tr:nth-child(even) td {
+      background: #FFF6EB;
+    }
+
+    tr:hover td {
+      background: #E7D6C4;
+    }
+
+    /* Step boxes */
+    .step {
+      background: #E7D6C4;
+      border-radius: 8px;
+      padding: 14px 20px;
+      margin: 12px 0;
+    }
+
+    .step strong {
+      color: #2B2018;
+    }
+
+    /* Check yourself */
+    .check {
+      background: #FFF6EB;
+      border: 2px dashed #8A6E57;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .check ul {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .check li::before {
+      content: "☐ ";
+      color: #8A6E57;
+      font-weight: bold;
+    }
+
+    /* Teacher instructions */
+    .teacher-instructions {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 30px 40px;
+    }
+
+    .teacher-instructions h2 {
+      color: #FFF6EB;
+      border-bottom: 2px solid #8A6E57;
+    }
+
+    .teacher-instructions ol {
+      margin-left: 25px;
+      color: #FFF6EB;
+    }
+
+    .teacher-instructions li {
+      margin-bottom: 8px;
+      color: #E7D6C4;
+    }
+
+    /* Navigation buttons */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 25px 40px;
+      background: #E7D6C4;
+      border-top: 3px solid #8A6E57;
+      flex-wrap: wrap;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: #FFF6EB;
+      color: #2B2018;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      border: 2px solid #8A6E57;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #8A6E57;
+      color: #FFF6EB;
+    }
+
+    .next-btn {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      margin-left: auto;
+    }
+
+    .next-btn:hover {
+      background: #2B2018;
+    }
+
+    /* 🌧️ Falling rain animation */
+    .rain-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9998;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .rain-container.active {
+      opacity: 1;
+    }
+
+    .raindrop {
+      position: absolute;
+      top: -20px;
+      width: 2px;
+      height: 18px;
+      background: linear-gradient(to bottom, transparent, #8A6E57);
+      border-radius: 2px;
+      opacity: 0.5;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(105vh);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5em; }
+      section, .teacher-instructions { padding: 22px; }
+      .activity { padding: 16px; }
+      .nav-buttons {
+        flex-direction: column;
+        padding: 20px;
+      }
+      .next-btn, .back-btn {
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🌧️ Falling rain overlay -->
+  <div class="rain-container" id="rainContainer"></div>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="week-label">Week 3</div>
+      <h1>Turtle Sandbox (Beginner Project)</h1>
+      <div class="subtitle">Building a complete model using basic tools</div>
+    </header>
+
+    <!-- Welcome -->
+    <section>
+      <h2>Welcome Back!</h2>
+      <div class="welcome">
+        <p>You've learned to navigate SketchUp and draw with precision. Now it's time to <strong>build something complete</strong>.</p>
+        <p>This week, you'll combine everything you've learned — Rectangle, Push/Pull, Offset, and Line — to create a <strong>turtle sandbox</strong>: a shallow box with walls where a pet turtle could live.</p>
+        <p>You'll also add <strong>materials and colors</strong> to make it look real. By the end, you'll have a finished 3D model you can show off.</p>
+      </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section>
+      <h2>What You'll Learn This Week</h2>
+      <div class="goal">
+        <ul>
+          <li>Combine <strong>Rectangle, Push/Pull, Offset, and Line</strong> tools in one project</li>
+          <li>Build a <strong>multi-part model</strong> — a sandbox with walls</li>
+          <li>Apply <strong>materials and colors</strong> to bring your model to life</li>
+          <li>Save and share your finished model</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section>
+      <h2>Let's Begin</h2>
+
+      <!-- Activity 1 -->
+      <div class="activity">
+        <span class="time">10 minutes</span>
+        <h3>1. Warm-Up: Recap Drawing Tools</h3>
+        <p>Before building, let's make sure you remember your tools. Open SketchUp and try these quick challenges:</p>
+        <p><strong>Quick practice:</strong></p>
+        <ol>
+          <li>Draw a rectangle <code>2m × 2m</code></li>
+          <li>Push/Pull it up by <code>30cm</code></li>
+          <li>Use the <strong>Offset</strong> tool to create a 10cm border inside</li>
+          <li>Use the <strong>Line</strong> tool to draw a diagonal across the top</li>
+        </ol>
+        <div class="tip">
+          If any tool feels unfamiliar, review Week 2 before starting the sandbox. Speed comes after accuracy.
+        </div>
+        <div class="warning">
+          <strong>Reminder:</strong> Always save your file with the format <code>week#-studentid-firstname-lastname</code>.
+        </div>
+      </div>
+
+      <!-- Activity 2 -->
+      <div class="activity">
+        <span class="time">15 minutes</span>
+        <h3>2. Build the Sandbox Base</h3>
+        <p>Every sandbox starts with a flat base. This is the floor of the sandbox — where the sand sits.</p>
+
+        <p><strong>Step 1: Draw the base</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select the <strong>Rectangle</strong> tool (or press <strong>R</strong>)</li>
+            <li>Click once to start</li>
+            <li>Move your cursor to make a rectangle — then <strong>type</strong> <code>1m, 1m</code> and press <strong>Enter</strong></li>
+            <li>You now have a perfect 1m × 1m square</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Give the base thickness</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select <strong>Push/Pull</strong> (or press <strong>P</strong>)</li>
+            <li>Click on the rectangle face</li>
+            <li>Pull it up slightly — type <code>5cm</code> — press Enter</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>Why 5cm?</strong> Real sandbox bases are a few centimeters thick. This gives the model a solid look.
+        </div>
+      </div>
+
+      <!-- Activity 3 -->
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>3. Build the Sandbox Walls with Offset + Push/Pull</h3>
+        <p>Now we'll build the walls. This is where <strong>Offset</strong> becomes your best friend — it creates the inner wall automatically.</p>
+
+        <p><strong>Step 1: Create the wall outline</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select the <strong>Offset</strong> tool (or press <strong>F</strong>)</li>
+            <li>Click on the top edge of the sandbox base</li>
+            <li>Move your cursor inward</li>
+            <li>Type <code>15cm</code> — press Enter</li>
+            <li>You now have an inner square 15cm from the outer edge</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Push the wall upward</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select <strong>Push/Pull</strong></li>
+            <li>Click on the outer top face</li>
+            <li>Pull it up — type <code>20cm</code> — press Enter</li>
+            <li>The wall rises around the inner base</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Check the walls</strong></p>
+        <div class="step">
+          <ul>
+            <li>Orbit around to see the walls from every angle</li>
+            <li>Make sure all 4 walls are the same height</li>
+            <li>Use <strong>Eraser</strong> (E) to remove any stray lines</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>Look at that!</strong> You used Offset and Push/Pull together to create a real 3D box with walls — just like a real sandbox.
+        </div>
+      </div>
+
+      <!-- Activity 4 -->
+      <div class="activity">
+        <span class="time">25 minutes</span>
+        <h3>4. Build Your Own Turtle Sandbox</h3>
+        <p>Now it's your turn. Follow the steps, but make it your own. Choose your own dimensions.</p>
+
+        <p><strong>Required features:</strong></p>
+        <ul>
+          <li>A square or rectangular base (at least 1m × 1m)</li>
+          <li>Walls that go around all four sides</li>
+          <li>Walls should be at least 15cm tall</li>
+          <li>The base should be at least 5cm thick</li>
+          <li>Everything should be connected (no floating parts)</li>
+        </ul>
+
+        <p><strong>Suggested dimensions:</strong></p>
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Suggested Size</th>
+          </tr>
+          <tr><td>Base</td><td>1.2m × 1.2m</td></tr>
+          <tr><td>Base thickness</td><td>5cm</td></tr>
+          <tr><td>Wall thickness</td><td>15cm</td></tr>
+          <tr><td>Wall height</td><td>25cm</td></tr>
+        </table>
+
+        <p><strong>Optional extras (if you have time):</strong></p>
+        <ul>
+          <li>Add a small ramp using the Line tool and Push/Pull</li>
+          <li>Add a shallow pool by pushing down on part of the base</li>
+          <li>Add a decorative border around the top edge</li>
+        </ul>
+
+        <div class="warning">
+          <strong>If something breaks:</strong> Press <strong>Ctrl + Z</strong> to undo. Mistakes are part of the process — every 3D designer fixes their own work.
+        </div>
+
+        <div class="tip">
+          <strong>Tip:</strong> Save often. Press <strong>Ctrl + S</strong> every few minutes so you never lose progress.
+        </div>
+      </div>
+
+      <!-- Activity 5 -->
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>5. Apply Materials and Colors</h3>
+        <p>Your sandbox is built. Now let's make it look real by adding <strong>materials</strong> — colors and textures.</p>
+
+        <p><strong>Step 1: Open the Materials panel</strong></p>
+        <div class="step">
+          <ul>
+            <li>Look for the <strong>Materials</strong> panel on the right side of the screen</li>
+            <li>Click the dropdown to see categories: Colors, Groundcover, Landscaping, etc.</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Paint the sandbox base (sand)</strong></p>
+        <div class="step">
+          <ul>
+            <li>Choose a sand-colored material (yellow/tan)</li>
+            <li>Click the inner base surface to apply it</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Paint the walls (wood)</strong></p>
+        <div class="step">
+          <ul>
+            <li>Choose a wood material (brown)</li>
+            <li>Click each wall surface to apply it</li>
+            <li>Try to make all four walls the same color</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 4: Add decorative touches</strong></p>
+        <div class="step">
+          <ul>
+            <li>Add a different wood color to the top edge of the walls</li>
+            <li>Or add a green grassy area around the outside</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>Mistake?</strong> Select the correct material again and click the same surface — it will repaint over the old color.
+        </div>
+      </div>
+
+      <!-- Activity 6 -->
+      <div class="activity">
+        <span class="time">10 minutes</span>
+        <h3>6. Save &amp; Share</h3>
+        <p>Your sandbox is finished. Let's save it properly and share it with your teacher.</p>
+
+        <p><strong>Save your work:</strong></p>
+        <ol>
+          <li>Click the model name at the top of the screen</li>
+          <li>Rename it: <code>week3-studentid-firstname-lastname</code></li>
+          <li>Click <strong>Save</strong></li>
+          <li>Verify it appears in your Google Drive</li>
+        </ol>
+
+        <p><strong>Share your work (optional):</strong></p>
+        <ol>
+          <li>Click <strong>File → Share</strong></li>
+          <li>Copy the share link</li>
+          <li>Paste it into your class submission form or Google Classroom</li>
+        </ol>
+
+        <div class="tip">
+          <strong>Use Zoom Extents (Shift + Z)</strong> before saving to see your whole sandbox. This makes it easier to spot problems.
+        </div>
+      </div>
+    </section>
+
+    <!-- Check Yourself -->
+    <section>
+      <h2>Check Yourself</h2>
+      <p>Before you finish, make sure you can do all of these:</p>
+      <div class="check">
+        <ul>
+          <li>I can draw a rectangle with exact dimensions</li>
+          <li>I can use Offset to create a wall border</li>
+          <li>I can Push/Pull to make walls</li>
+          <li>I can apply materials and colors</li>
+          <li>I can save and share my file correctly</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Key Terms -->
+    <section>
+      <h2>Key Words to Remember</h2>
+      <table>
+        <tr>
+          <th>Term</th>
+          <th>What It Means</th>
+        </tr>
+        <tr><td>Material</td><td>A color, texture, or pattern applied to a surface</td></tr>
+        <tr><td>Color</td><td>The visual appearance of a surface — one kind of material</td></tr>
+        <tr><td>Component</td><td>A reusable group of objects — like a copy that stays linked to the original</td></tr>
+      </table>
+    </section>
+
+    <!-- Quick Check -->
+    <section>
+      <h2>Quick Check</h2>
+      <p>Answer these in your head or on paper:</p>
+      <ol>
+        <li>What tool creates a smaller copy of a shape at a set distance?</li>
+        <li>How do you make walls rise from the base?</li>
+        <li>Where do you find materials in SketchUp?</li>
+        <li>What's the proper filename format for your saved work?</li>
+      </ol>
+    </section>
+
+    <!-- Homework -->
+    <section>
+      <h2>Optional Homework</h2>
+      <ul>
+        <li>Sketch a different kind of sandbox (round, oval, or with a lid)</li>
+        <li>Write down the dimensions you'd use for each part</li>
+        <li>If you have SketchUp at home, try building it</li>
+      </ul>
+    </section>
+
+    <!-- Next Week -->
+    <section>
+      <h2>Coming Next Week</h2>
+      <p><strong>Week 4: Pirate Ship Playhouse — Hull &amp; Deck</strong> — You'll start building a complex multi-part model and learn how to use Offset and Move to create a pirate ship's hull and deck.</p>
+    </section>
+
+    <!-- Teacher Instructions -->
+    <div class="teacher-instructions">
+      <h2>Teacher Instructions</h2>
+      <ol>
+        <li>Verify each student still has their Week 2 table saved in Google Drive.</li>
+        <li>Review Rectangle, Push/Pull, and Offset quickly before starting.</li>
+        <li>Demonstrate the sandbox base build step by step.</li>
+        <li>Show how Offset creates the inner wall automatically.</li>
+        <li>Demonstrate Push/Pull to raise the walls.</li>
+        <li>Guide students through building their own sandbox.</li>
+        <li>Circulate the room and assist students who struggle with Offset.</li>
+        <li>Demonstrate how to open the Materials panel.</li>
+        <li>Show how to apply materials to the base and walls.</li>
+        <li>Assist students who want to customize colors.</li>
+        <li>Remind students to use the Eraser tool for stray geometry.</li>
+        <li>Verify each student's file is named correctly and saved.</li>
+        <li>Collect exit tickets or ask quick review questions.</li>
+        <li>Note which students need extra support in Week 4.</li>
+      </ol>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-buttons">
+      <a href="week2.html" class="back-btn">&larr; Back: Week 2</a>
+      <a href="week4.html" class="next-btn">Next Lesson: Pirate Ship Hull &amp; Deck &rarr;</a>
+    </div>
+
+  </div>
+
+  <!-- 🌧️ Falling rain timer -->
+  <script>
+    const rainContainer = document.getElementById('rainContainer');
+    let rainInterval = null;
+
+    function createRain() {
+      // Clear any existing drops
+      rainContainer.innerHTML = '';
+
+      // Create 60 raindrops with random positions and speeds
+      for (let i = 0; i < 60; i++) {
+        const drop = document.createElement('div');
+        drop.className = 'raindrop';
+        drop.style.left = Math.random() * 100 + '%';
+        drop.style.animationDuration = (0.8 + Math.random() * 1.2) + 's';
+        drop.style.animationDelay = (Math.random() * 2) + 's';
+        drop.style.height = (12 + Math.random() * 12) + 'px';
+        drop.style.opacity = 0.3 + Math.random() * 0.4;
+        rainContainer.appendChild(drop);
+      }
+
+      // Show the rain
+      rainContainer.classList.add('active');
+
+      // Let it rain for 20 seconds
+      setTimeout(() => {
+        rainContainer.classList.remove('active');
+      }, 20000);
+    }
+
+    // First rain after 10 seconds (for testing)
+    setTimeout(createRain, 10000);
+
+    // Then every 10 minutes (600,000 ms)
+    setInterval(createRain, 600000);
+  </script>
+
+</body>
+</html>

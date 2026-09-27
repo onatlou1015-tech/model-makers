@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 6 — Customization &amp; Export for 3D Printing</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #FFF6EB;
+      color: #2B2018;
+      line-height: 1.7;
+      padding: 40px 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #FFF6EB;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(43, 32, 24, 0.25);
+      overflow: hidden;
+      border: 1px solid #E7D6C4;
+      position: relative;
+    }
+
+    /* Header */
+    header {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 45px 40px;
+      text-align: center;
+    }
+
+    header .week-label {
+      color: #C7AD94;
+      font-size: 0.95em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #FFF6EB;
+    }
+
+    header .subtitle {
+      color: #C7AD94;
+      font-size: 1em;
+    }
+
+    /* Content sections */
+    section {
+      padding: 30px 40px;
+      border-bottom: 1px solid #E7D6C4;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    h2 {
+      color: #2B2018;
+      font-size: 1.4em;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #C7AD94;
+    }
+
+    h3 {
+      color: #8A6E57;
+      font-size: 1.1em;
+      margin: 20px 0 10px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: #2B2018;
+    }
+
+    ul, ol {
+      margin: 10px 0 15px 25px;
+      color: #2B2018;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* Welcome box */
+    .welcome {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 18px 22px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    /* Goal box */
+    .goal {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .goal ul {
+      margin-bottom: 0;
+    }
+
+    /* Activity blocks */
+    .activity {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 18px;
+    }
+
+    .activity h3 {
+      color: #2B2018;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .activity .time {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      font-size: 0.8em;
+      padding: 3px 12px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    /* Tip box */
+    .tip {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 14px 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+      font-style: italic;
+    }
+
+    /* Warning box */
+    .warning {
+      background: #FFF6EB;
+      border-left: 5px solid #2B2018;
+      padding: 14px 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+
+    /* Video button */
+    .video-wrap {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .stylish-link {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      border-radius: 6px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      border: 2px solid #2B2018;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .stylish-link:hover {
+      background-color: #2B2018;
+      color: #FFF6EB;
+      transform: translateY(-2px);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 0.95em;
+    }
+
+    th {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #E7D6C4;
+      color: #2B2018;
+    }
+
+    tr:nth-child(even) td {
+      background: #FFF6EB;
+    }
+
+    tr:hover td {
+      background: #E7D6C4;
+    }
+
+    /* Step boxes */
+    .step {
+      background: #E7D6C4;
+      border-radius: 8px;
+      padding: 14px 20px;
+      margin: 12px 0;
+    }
+
+    .step strong {
+      color: #2B2018;
+    }
+
+    /* Check yourself */
+    .check {
+      background: #FFF6EB;
+      border: 2px dashed #8A6E57;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .check ul {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .check li::before {
+      content: "☐ ";
+      color: #8A6E57;
+      font-weight: bold;
+    }
+
+    /* Teacher instructions */
+    .teacher-instructions {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 30px 40px;
+    }
+
+    .teacher-instructions h2 {
+      color: #FFF6EB;
+      border-bottom: 2px solid #8A6E57;
+    }
+
+    .teacher-instructions ol {
+      margin-left: 25px;
+      color: #FFF6EB;
+    }
+
+    .teacher-instructions li {
+      margin-bottom: 8px;
+      color: #E7D6C4;
+    }
+
+    /* Navigation buttons */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 25px 40px;
+      background: #E7D6C4;
+      border-top: 3px solid #8A6E57;
+      flex-wrap: wrap;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: #FFF6EB;
+      color: #2B2018;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      border: 2px solid #8A6E57;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #8A6E57;
+      color: #FFF6EB;
+    }
+
+    .next-btn {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      margin-left: auto;
+    }
+
+    .next-btn:hover {
+      background: #2B2018;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5em; }
+      section, .teacher-instructions { padding: 22px; }
+      .activity { padding: 16px; }
+      .nav-buttons {
+        flex-direction: column;
+        padding: 20px;
+      }
+      .next-btn, .back-btn {
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="week-label">Week 6</div>
+      <h1>Customization &amp; Export for 3D Printing</h1>
+      <div class="subtitle">Making it your own and preparing for the printer</div>
+    </header>
+
+    <!-- Welcome -->
+    <section>
+      <h2>Welcome Back!</h2>
+      <div class="welcome">
+        <p>Your pirate ship is built! Now it's time to make it <strong>yours</strong> — and get it ready for the 3D printer.</p>
+        <p>This week, you'll add colors and materials to bring your ship to life. You'll explore the <strong>3D Warehouse</strong> to add trees, flags, and other details. Then you'll learn how to <strong>export your model as an STL file</strong> — the file format that 3D printers understand.</p>
+        <p>By the end of this lesson, you'll have a customized, print-ready pirate ship.</p>
+      </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section>
+      <h2>What You'll Learn This Week</h2>
+      <div class="goal">
+        <ul>
+          <li>Apply <strong>materials and colors</strong> creatively</li>
+          <li>Use the <strong>3D Warehouse</strong> to add models</li>
+          <li>Export your work as an <strong>STL file</strong> for 3D printing</li>
+          <li>Understand the <strong>3D printing workflow</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section>
+      <h2>Let's Begin</h2>
+
+      <!-- Activity 1 -->
+      <div class="activity">
+        <span class="time">10 minutes</span>
+        <h3>1. Warm-Up: Recap Your Pirate Ship</h3>
+        <p>Open your Week 5 pirate ship model. Before we customize it, let's make sure everything is ready.</p>
+        <p><strong>Quick review:</strong></p>
+        <ol>
+          <li>Orbit around your ship and check all parts are connected</li>
+          <li>Verify the hull, deck, cabin, portholes, and plank are all present</li>
+          <li>Check that the model is a <strong>Solid Group</strong> (right-click → Entity Info)</li>
+          <li>Fix any remaining gaps or stray lines with the Eraser tool</li>
+        </ol>
+        <div class="tip">
+          A clean model is easier to customize and print. Take a minute to tidy up.
+        </div>
+        <div class="warning">
+          <strong>Reminder:</strong> Save your file with the format <code>week#-studentid-firstname-lastname</code>.
+        </div>
+      </div>
+
+      <!-- Activity 2 -->
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>2. Materials &amp; Colors: Customize the Ship</h3>
+        <p>Materials are what make your model look real. A pirate ship can be wood, metal, and cloth — all made from simple color choices.</p>
+
+        <p><strong>Step 1: Open the Materials panel</strong></p>
+        <div class="step">
+          <ul>
+            <li>Look for the <strong>Materials</strong> panel on the right side of the screen</li>
+            <li>Click the dropdown to see categories: Colors, Groundcover, Landscaping, Wood, Metal, etc.</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Paint the hull (wood)</strong></p>
+        <div class="step">
+          <ul>
+            <li>Choose a <strong>Wood</strong> material — dark brown looks classic</li>
+            <li>Click the outer hull surfaces to apply it</li>
+            <li>Try a lighter wood for the inner hull to add contrast</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Paint the deck</strong></p>
+        <div class="step">
+          <ul>
+            <li>Choose a light wood color for the deck</li>
+            <li>Click the deck surface to apply it</li>
+            <li>This makes the deck stand out from the hull</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 4: Paint the cabin</strong></p>
+        <div class="step">
+          <ul>
+            <li>Pick a contrasting wood color for the cabin</li>
+            <li>Try a red or dark brown roof</li>
+            <li>Add a metal door handle or window frame if you like</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 5: Paint the plank and details</strong></p>
+        <div class="step">
+          <ul>
+            <li>Use a lighter wood for the plank</li>
+            <li>Add a metal look to any ship parts like cannons or wheels</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>Make it your own.</strong> Try a black hull for a "Black Pearl" look, or a bright blue for a fantasy ship. There are no wrong colors on a pirate ship!
+        </div>
+      </div>
+
+      <!-- Activity 3 -->
+      <div class="activity">
+        <span class="time">15 minutes</span>
+        <h3>3. 3D Warehouse: Add Details</h3>
+        <p>The 3D Warehouse is a library of free models you can drop into your project. You can add trees, flags, animals, or even pirates!</p>
+
+        <p><strong>Step 1: Open the 3D Warehouse</strong></p>
+        <div class="step">
+          <ul>
+            <li>Look for the <strong>3D Warehouse</strong> panel on the right side</li>
+            <li>Or go to <strong>File → 3D Warehouse → Get Models</strong></li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Search for a model</strong></p>
+        <div class="step">
+          <ul>
+            <li>Type what you want in the search bar — like "pirate flag"</li>
+            <li>Browse the results</li>
+            <li>Click on a model to preview it</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Add it to your model</strong></p>
+        <div class="step">
+          <ul>
+            <li>Click <strong>Download</strong> or <strong>Insert</strong></li>
+            <li>The model appears in your SketchUp file</li>
+            <li>Use the <strong>Move</strong> tool to position it</li>
+            <li>Use the <strong>Scale</strong> tool (S) to make it the right size</li>
+          </ul>
+        </div>
+
+        <p><strong>Ideas for your pirate ship:</strong></p>
+        <ul>
+          <li>A pirate flag on top of the cabin</li>
+          <li>A ship's wheel on the deck</li>
+          <li>Barrels or crates on the deck</li>
+          <li>A treasure chest</li>
+          <li>A parrot or sea creature</li>
+        </ul>
+
+        <div class="warning">
+          <strong>Careful with size:</strong> Models from the 3D Warehouse come in all sizes. Use the Scale tool (S) to fit them to your ship. A flag should be small — not bigger than your cabin!
+        </div>
+      </div>
+
+      <!-- Activity 4 -->
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>4. Export as STL File</h3>
+        <p>STL is the file format that 3D printers use. It stands for "Standard Triangle Language" — it breaks your model into triangles that the printer can read.</p>
+
+        <p><strong>Step 1: Select and group your model</strong></p>
+        <div class="step">
+          <ul>
+            <li>Use the <strong>Select</strong> tool to drag a box around everything</li>
+            <li>Right-click → <strong>Group</strong></li>
+            <li>Check that it's a Solid Group in Entity Info</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Export as STL</strong></p>
+        <div class="step">
+          <ul>
+            <li>Go to <strong>File → Export → 3D Model</strong></li>
+            <li>In the file type dropdown, select <strong>STL</strong></li>
+            <li>Name your file: <code>week6-studentid-firstname-lastname.stl</code></li>
+            <li>Click <strong>Export</strong></li>
+            <li>Save to your Google Drive or downloads folder</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Check the STL file</strong></p>
+        <div class="step">
+          <ul>
+            <li>Locate the file you just saved</li>
+            <li>Check that it ends with <code>.stl</code></li>
+            <li>Note the file size — usually a few MB</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>Export options:</strong> SketchUp lets you choose the STL format (ASCII or Binary). Binary is smaller and prints faster — use Binary if given the choice.
+        </div>
+
+        <div class="warning">
+          <strong>If it won't export:</strong> Make sure your model is a Solid Group. Non-solid models can't be exported as STL.
+        </div>
+      </div>
+
+      <!-- Activity 5 -->
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>5. Open STL in a Slicer (Cura or PrusaSlicer)</h3>
+        <p>A <strong>slicer</strong> is software that prepares your model for the printer. It slices your 3D model into thin layers and creates the instructions the printer follows.</p>
+
+        <p><strong>Step 1: Open your slicer</strong></p>
+        <div class="step">
+          <ul>
+            <li>Open <strong>Cura</strong> or <strong>PrusaSlicer</strong> on your computer</li>
+            <li>If not installed, ask your teacher for the class computer</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Import your STL</strong></p>
+        <div class="step">
+          <ul>
+            <li>Click <strong>File → Open File</strong></li>
+            <li>Select your <code>.stl</code> file</li>
+            <li>Your pirate ship appears on the virtual print bed</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Explore the preview</strong></p>
+        <div class="step">
+          <ul>
+            <li>Click the <strong>Preview</strong> tab</li>
+            <li>Drag the layer slider on the right side</li>
+            <li>Watch as your ship is sliced into hundreds of thin layers</li>
+            <li>Each layer is one pass of the printer</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 4: Check the estimated print time</strong></p>
+        <div class="step">
+          <ul>
+            <li>Look at the bottom of the screen</li>
+            <li>It shows print time and material usage</li>
+            <li>A small pirate ship might take 2–6 hours to print</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>Play with the slicer.</strong> Try rotating your model, scaling it up or down, and see how the print time changes.
+        </div>
+      </div>
+
+      <!-- Activity 6 -->
+      <div class="activity">
+        <span class="time">15 minutes</span>
+        <h3>6. Discuss: Printability, Wall Thickness, Overhangs</h3>
+        <p>Not every model can be printed. Some designs have features that are too thin, too tall, or too complex. Let's talk about what makes a model printable.</p>
+
+        <p><strong>Wall thickness</strong></p>
+        <ul>
+          <li>Walls that are too thin (less than 1mm) may break or print poorly</li>
+          <li>Aim for walls at least <strong>1.2mm</strong> thick</li>
+          <li>Your portholes should have thick walls around them</li>
+        </ul>
+
+        <p><strong>Overhangs</strong></p>
+        <ul>
+          <li>An overhang is any part that sticks out into empty air</li>
+          <li>Small overhangs are okay — the printer can handle them</li>
+          <li>Big overhangs need <strong>supports</strong> (extra material printed underneath)</li>
+          <li>The slicer adds supports automatically if needed</li>
+        </ul>
+
+        <p><strong>Bridges</strong></p>
+        <ul>
+          <li>A bridge is a flat surface printed between two supports</li>
+          <li>Short bridges print fine — long bridges may sag</li>
+        </ul>
+
+        <p><strong>Scale</strong></p>
+        <ul>
+          <li>Your ship needs to fit on the printer's bed (usually 20cm × 20cm)</li>
+          <li>Use the slicer to scale down if needed</li>
+        </ul>
+
+        <p><strong>Class discussion questions:</strong></p>
+        <ol>
+          <li>Where are the overhangs on your pirate ship?</li>
+          <li>Which parts are the thinnest?</li>
+          <li>Will the printer need supports? Where?</li>
+          <li>Does your ship need to be scaled down?</li>
+        </ol>
+
+        <div class="tip">
+          <strong>Real engineers think about this too.</strong> Designing for 3D printing is a skill — every printable object went through the same thinking you're doing now.
+        </div>
+
+        <p><strong>Save your work:</strong></p>
+        <ol>
+          <li>Click the model name at the top</li>
+          <li>Rename it: <code>week6-studentid-firstname-lastname</code></li>
+          <li>Click <strong>Save</strong></li>
+          <li>Also save your STL file with the same name</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Check Yourself -->
+    <section>
+      <h2>Check Yourself</h2>
+      <p>Before you finish, make sure you can do all of these:</p>
+      <div class="check">
+        <ul>
+          <li>I applied materials and colors to my pirate ship</li>
+          <li>I added at least one model from the 3D Warehouse</li>
+          <li>I exported my model as an STL file</li>
+          <li>I opened my STL in a slicer</li>
+          <li>I saw the layer-by-layer preview</li>
+          <li>I understand what overhangs and supports are</li>
+          <li>I saved both my SketchUp file and my STL file</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Key Terms -->
+    <section>
+      <h2>Key Words to Remember</h2>
+      <table>
+        <tr>
+          <th>Term</th>
+          <th>What It Means</th>
+        </tr>
+        <tr><td>STL</td><td>The file format that 3D printers use — models are broken into triangles</td></tr>
+        <tr><td>Slicer</td><td>Software that turns a 3D model into printer instructions by cutting it into layers</td></tr>
+        <tr><td>Layer</td><td>One thin horizontal slice of a 3D model — the printer prints one layer at a time</td></tr>
+        <tr><td>Wall Thickness</td><td>How thick the walls of a model are — thin walls may break or print poorly</td></tr>
+        <tr><td>Overhang</td><td>Any part of a model that sticks out into empty air</td></tr>
+        <tr><td>Support</td><td>Extra material printed under an overhang to hold it up during printing</td></tr>
+      </table>
+    </section>
+
+    <!-- Quick Check -->
+    <section>
+      <h2>Quick Check</h2>
+      <p>Answer these in your head or on paper:</p>
+      <ol>
+        <li>What does STL stand for, and why does it matter?</li>
+        <li>What does a slicer do?</li>
+        <li>What's an overhang, and when do you need supports?</li>
+        <li>How thick should walls be for 3D printing?</li>
+      </ol>
+    </section>
+
+    <!-- Homework -->
+    <section>
+      <h2>Optional Homework</h2>
+      <ul>
+        <li>Take a photo or screenshot of your sliced model showing the layers</li>
+        <li>Write 2–3 sentences about what you'd change if you printed it again</li>
+        <li>Think about what you'd design for Week 7's real-life project</li>
+      </ul>
+    </section>
+
+    <!-- Next Week -->
+    <section>
+      <h2>Coming Next Week</h2>
+      <p><strong>Week 7: Design Your Own Real-Life Product</strong> — You'll apply everything you've learned to design and model your own product that solves a real problem.</p>
+    </section>
+
+    <!-- Teacher Instructions -->
+    <div class="teacher-instructions">
+      <h2>Teacher Instructions</h2>
+      <ol>
+        <li>Verify each student still has their Week 5 pirate ship saved in Google Drive.</li>
+        <li>Review solid groups and the Entity Info panel quickly.</li>
+        <li>Demonstrate how to open and use the Materials panel.</li>
+        <li>Show how to apply materials to different parts of the ship.</li>
+        <li>Demonstrate searching and downloading models from the 3D Warehouse.</li>
+        <li>Show how to use Move and Scale to position downloaded models.</li>
+        <li>Demonstrate File → Export → 3D Model → STL.</li>
+        <li>Ensure each student successfully exports an STL file.</li>
+        <li>Open Cura or PrusaSlicer and demonstrate importing an STL.</li>
+        <li>Show the layer preview and explain how slicing works.</li>
+        <li>Discuss print time, supports, and scaling.</li>
+        <li>Lead a short class discussion about printability.</li>
+        <li>Verify each student saves both the SketchUp file and the STL file.</li>
+        <li>Note which students need extra support in Week 7.</li>
+      </ol>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-buttons">
+      <a href="week5.html" class="back-btn">&larr; Back: Week 5</a>
+      <a href="week7.html" class="next-btn">Next Lesson: Design Your Own Product &rarr;</a>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 5 — Pirate Ship Playhouse: Cabin, Portholes &amp; Details</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #FFF6EB;
+      color: #2B2018;
+      line-height: 1.7;
+      padding: 40px 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #FFF6EB;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(43, 32, 24, 0.25);
+      overflow: hidden;
+      border: 1px solid #E7D6C4;
+      position: relative;
+    }
+
+    /* Header */
+    header {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 45px 40px;
+      text-align: center;
+    }
+
+    header .week-label {
+      color: #C7AD94;
+      font-size: 0.95em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #FFF6EB;
+    }
+
+    header .subtitle {
+      color: #C7AD94;
+      font-size: 1em;
+    }
+
+    /* Content sections */
+    section {
+      padding: 30px 40px;
+      border-bottom: 1px solid #E7D6C4;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    h2 {
+      color: #2B2018;
+      font-size: 1.4em;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #C7AD94;
+    }
+
+    h3 {
+      color: #8A6E57;
+      font-size: 1.1em;
+      margin: 20px 0 10px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: #2B2018;
+    }
+
+    ul, ol {
+      margin: 10px 0 15px 25px;
+      color: #2B2018;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* Welcome box */
+    .welcome {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 18px 22px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    /* Goal box */
+    .goal {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .goal ul {
+      margin-bottom: 0;
+    }
+
+    /* Activity blocks */
+    .activity {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 18px;
+    }
+
+    .activity h3 {
+      color: #2B2018;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .activity .time {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      font-size: 0.8em;
+      padding: 3px 12px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    /* Tip box */
+    .tip {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 14px 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+      font-style: italic;
+    }
+
+    /* Warning box */
+    .warning {
+      background: #FFF6EB;
+      border-left: 5px solid #2B2018;
+      padding: 14px 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+
+    /* Video button */
+    .video-wrap {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .stylish-link {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      border-radius: 6px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      border: 2px solid #2B2018;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .stylish-link:hover {
+      background-color: #2B2018;
+      color: #FFF6EB;
+      transform: translateY(-2px);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 0.95em;
+    }
+
+    th {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #E7D6C4;
+      color: #2B2018;
+    }
+
+    tr:nth-child(even) td {
+      background: #FFF6EB;
+    }
+
+    tr:hover td {
+      background: #E7D6C4;
+    }
+
+    /* Step boxes */
+    .step {
+      background: #E7D6C4;
+      border-radius: 8px;
+      padding: 14px 20px;
+      margin: 12px 0;
+    }
+
+    .step strong {
+      color: #2B2018;
+    }
+
+    /* Check yourself */
+    .check {
+      background: #FFF6EB;
+      border: 2px dashed #8A6E57;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .check ul {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .check li::before {
+      content: "☐ ";
+      color: #8A6E57;
+      font-weight: bold;
+    }
+
+    /* Teacher instructions */
+    .teacher-instructions {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 30px 40px;
+    }
+
+    .teacher-instructions h2 {
+      color: #FFF6EB;
+      border-bottom: 2px solid #8A6E57;
+    }
+
+    .teacher-instructions ol {
+      margin-left: 25px;
+      color: #FFF6EB;
+    }
+
+    .teacher-instructions li {
+      margin-bottom: 8px;
+      color: #E7D6C4;
+    }
+
+    /* Navigation buttons */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 25px 40px;
+      background: #E7D6C4;
+      border-top: 3px solid #8A6E57;
+      flex-wrap: wrap;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: #FFF6EB;
+      color: #2B2018;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      border: 2px solid #8A6E57;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #8A6E57;
+      color: #FFF6EB;
+    }
+
+    .next-btn {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      margin-left: auto;
+    }
+
+    .next-btn:hover {
+      background: #2B2018;
+    }
+
+    /* 🔤 Falling text animation */
+    .text-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9998;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .text-container.active {
+      opacity: 1;
+    }
+
+    .falling-letter {
+      position: absolute;
+      top: -60px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      font-size: 1.6em;
+      color: #8A6E57;
+      opacity: 0.75;
+      animation: letterFall linear forwards;
+    }
+
+    @keyframes letterFall {
+      0% {
+        transform: translateY(-60px) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.85;
+      }
+      50% {
+        transform: translateY(50vh) translateX(20px) rotate(15deg);
+      }
+      90% {
+        opacity: 0.85;
+      }
+      100% {
+        transform: translateY(110vh) translateX(-20px) rotate(-15deg);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5em; }
+      section, .teacher-instructions { padding: 22px; }
+      .activity { padding: 16px; }
+      .nav-buttons {
+        flex-direction: column;
+        padding: 20px;
+      }
+      .next-btn, .back-btn {
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔤 Falling text overlay -->
+  <div class="text-container" id="textContainer"></div>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="week-label">Week 5</div>
+      <h1>Pirate Ship Playhouse: Cabin, Portholes &amp; Details</h1>
+      <div class="subtitle">Adding details and preparing for 3D printing</div>
+    </header>
+
+    <!-- Welcome -->
+    <section>
+      <h2>Welcome Back!</h2>
+      <div class="welcome">
+        <p>Your pirate ship is starting to look like a real ship! You've built the <strong>hull</strong> and the <strong>deck</strong>. Now it's time to add the details that make it come alive.</p>
+        <p>This week, you'll add the ship's <strong>cabin</strong>, cut round <strong>portholes</strong> into the hull, and add the famous <strong>plank</strong>. Then you'll check if your model is <strong>printable</strong> — ready to be turned into a real 3D object.</p>
+        <p>By the end of this lesson, you'll have a complete Pirate Ship Playhouse model.</p>
+      </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section>
+      <h2>What You'll Learn This Week</h2>
+      <div class="goal">
+        <ul>
+          <li>Build the ship's <strong>cabin</strong></li>
+          <li>Create <strong>portholes</strong> using Circle + Push/Pull</li>
+          <li>Add the <strong>plank</strong> and finalize your model</li>
+          <li>Check if your model is <strong>printable</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section>
+      <h2>Let's Begin</h2>
+
+      <!-- Activity 1 -->
+      <div class="activity">
+        <span class="time">10 minutes</span>
+        <h3>1. Warm-Up: Recap Hull and Deck</h3>
+        <p>Before we add details, let's review what you built last week. Open your Week 4 pirate ship model.</p>
+        <p><strong>Quick review:</strong></p>
+        <ol>
+          <li>Orbit around your ship</li>
+          <li>Check that the hull is hollow inside</li>
+          <li>Confirm that the deck sits inside the hull</li>
+          <li>Check for any gaps, holes, or floating parts</li>
+        </ol>
+        <div class="tip">
+          If your model has issues from last week, take 2 minutes to fix them now. A clean base makes the details much easier to add.
+        </div>
+        <div class="warning">
+          <strong>Reminder:</strong> Save your file with the format <code>week#-studentid-firstname-lastname</code>.
+        </div>
+      </div>
+
+      <!-- Activity 2 -->
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>2. The Ship's Cabin</h3>
+        <p>The cabin is the small house-like structure at the back of the ship. It's where the captain sleeps. The cabin sits on top of the deck and usually has a door and windows.</p>
+
+        <p><strong>Step 1: Draw the cabin base</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select the <strong>Rectangle</strong> tool (R)</li>
+            <li>Draw a rectangle on top of the deck near the back of the ship</li>
+            <li>Type <code>1m, 1.2m</code> — press Enter</li>
+            <li>This is the footprint of the cabin</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Pull the cabin walls up</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select <strong>Push/Pull</strong> (P)</li>
+            <li>Click the rectangle face</li>
+            <li>Pull up — type <code>1m</code> — press Enter</li>
+            <li>You now have a box for the cabin</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Add a roof (optional)</strong></p>
+        <div class="step">
+          <ul>
+            <li>Use the <strong>Line</strong> tool to draw a triangular roof on top</li>
+            <li>Or just Push/Pull a thinner rectangle on top as a flat roof</li>
+            <li>Both styles look good — choose your favorite</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 4: Add a door</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select the <strong>Rectangle</strong> tool</li>
+            <li>Draw a small rectangle on the front face of the cabin</li>
+            <li>Type <code>40cm, 80cm</code> — press Enter</li>
+            <li>Select <strong>Push/Pull</strong> and push the door inward by <code>5cm</code></li>
+            <li>This creates a recessed doorway</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>Where to place the cabin:</strong> Most pirate ships have the cabin at the back (the stern). Place it near the back edge of the deck, leaving space in front for the main deck area.
+        </div>
+      </div>
+
+      <!-- Activity 3 -->
+      <div class="activity">
+        <span class="time">15 minutes</span>
+        <h3>3. The Portholes (Circle + Push/Pull)</h3>
+        <p>Portholes are the round windows on the side of a ship. They let light in and look great on a model. To make them, we use the <strong>Circle</strong> tool and <strong>Push/Pull</strong>.</p>
+
+        <p><strong>Step 1: Draw a circle on the hull</strong></p>
+        <div class="step">
+          <ul>
+            <li>Orbit to see the side of your ship</li>
+            <li>Select the <strong>Circle</strong> tool (C)</li>
+            <li>Click on the side of the hull where you want a porthole</li>
+            <li>Type <code>15cm</code> for the radius — press Enter</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Push the circle inward</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select <strong>Push/Pull</strong> (P)</li>
+            <li>Click the circle face</li>
+            <li>Push it inward slowly — until it breaks through to the other side</li>
+            <li>This creates a round hole — a porthole!</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Add more portholes</strong></p>
+        <div class="step">
+          <ul>
+            <li>Draw 3–5 portholes along the side of the ship</li>
+            <li>Try to space them evenly</li>
+            <li>Use <strong>Select</strong> tool to check each porthole is the same size</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 4: Add portholes to the other side</strong></p>
+        <div class="step">
+          <ul>
+            <li>Orbit to the other side of the ship</li>
+            <li>Repeat the same steps to add matching portholes</li>
+          </ul>
+        </div>
+
+        <div class="warning">
+          <strong>Careful:</strong> Don't push the circle too far or it may create a long tunnel. Just push until you see the hole open up on the other side.
+        </div>
+
+        <div class="tip">
+          <strong>Pro tip:</strong> If your circle doesn't snap flat on the hull, hold <strong>Shift</strong> while placing it to lock it to the surface.
+        </div>
+      </div>
+
+      <!-- Activity 4 -->
+      <div class="activity">
+        <span class="time">15 minutes</span>
+        <h3>4. Add the Plank</h3>
+        <p>Every pirate ship has a plank — a wooden board sticking out from the side where prisoners (or unlucky sailors!) walk.</p>
+
+        <p><strong>Step 1: Draw the plank</strong></p>
+        <div class="step">
+          <ul>
+            <li>Orbit to the side of your ship</li>
+            <li>Select the <strong>Rectangle</strong> tool</li>
+            <li>Draw a long, thin rectangle extending outward from the side of the ship</li>
+            <li>Type <code>1.5m, 30cm</code> — press Enter</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Give the plank thickness</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select <strong>Push/Pull</strong></li>
+            <li>Click the rectangle face</li>
+            <li>Pull up slightly — type <code>5cm</code> — press Enter</li>
+            <li>The plank is now a solid board</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Position the plank</strong></p>
+        <div class="step">
+          <ul>
+            <li>Use <strong>Move</strong> (M) if you need to adjust the height</li>
+            <li>The plank should stick out from the side of the hull</li>
+            <li>About midway up the hull is a good place</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>Add ropes (optional):</strong> Use the Line tool to draw thin lines from the tip of the plank back up to the deck. This looks like rope supports.
+        </div>
+      </div>
+
+      <!-- Activity 5 -->
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>5. Complete Your Pirate Ship</h3>
+        <p>Now it's your turn to finish your pirate ship. Add the cabin, portholes, and plank. Make it your own.</p>
+
+        <p><strong>Required features:</strong></p>
+        <ul>
+          <li>A cabin on the deck (with at least a door)</li>
+          <li>At least 3 portholes on each side of the hull</li>
+          <li>A plank sticking out from one side</li>
+          <li>All parts connected — no floating pieces</li>
+        </ul>
+
+        <p><strong>Optional extras (if you have time):</strong></p>
+        <ul>
+          <li>Add a flagpole on top of the cabin</li>
+          <li>Add a ship's wheel using a circle</li>
+          <li>Add small crates or barrels on the deck</li>
+          <li>Add a rudder at the back of the ship</li>
+        </ul>
+
+        <p><strong>Suggested dimensions:</strong></p>
+        <table>
+          <tr>
+            <th>Part</th>
+            <th>Suggested Size</th>
+          </tr>
+          <tr><td>Cabin base</td><td>1m × 1.2m</td></tr>
+          <tr><td>Cabin height</td><td>1m</td></tr>
+          <tr><td>Cabin door</td><td>40cm × 80cm</td></tr>
+          <tr><td>Porthole radius</td><td>15cm</td></tr>
+          <tr><td>Plank length</td><td>1.5m</td></tr>
+          <tr><td>Plank width</td><td>30cm</td></tr>
+          <tr><td>Plank thickness</td><td>5cm</td></tr>
+        </table>
+
+        <div class="tip">
+          <strong>Save every few minutes.</strong> This is the most detailed lesson so far. Don't lose your work.
+        </div>
+      </div>
+
+      <!-- Activity 6 -->
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>6. Solid Check + Fix Common Issues</h3>
+        <p>Before we can 3D print your pirate ship, it needs to be a <strong>solid group</strong> — a completely closed object with no gaps or holes.</p>
+
+        <p><strong>What is a solid group?</strong></p>
+        <ul>
+          <li>Every edge is shared by exactly 2 faces</li>
+          <li>No gaps, holes, or open faces</li>
+          <li>Nothing floating separately</li>
+          <li>No inside-out faces</li>
+        </ul>
+
+        <p><strong>How to check your model:</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select your entire model (drag a box around it with the <strong>Select</strong> tool)</li>
+            <li>Right-click → <strong>Group</strong></li>
+            <li>Look at the <strong>Entity Info</strong> panel on the right</li>
+            <li>It should say <strong>"Solid Group"</strong></li>
+          </ul>
+        </div>
+
+        <p><strong>Common problems and how to fix them:</strong></p>
+        <table>
+          <tr>
+            <th>Problem</th>
+            <th>How to Fix</th>
+          </tr>
+          <tr>
+            <td>Stray lines inside the model</td>
+            <td>Use <strong>Eraser</strong> tool to remove them</td>
+          </tr>
+          <tr>
+            <td>Gap in the geometry</td>
+            <td>Use <strong>Line</strong> tool to close it — trace along the missing edge</td>
+          </tr>
+          <tr>
+            <td>Inside-out faces (dark gray/blue)</td>
+            <td>Right-click the face → <strong>Reverse Faces</strong></td>
+          </tr>
+          <tr>
+            <td>Two overlapping objects</td>
+            <td>Use <strong>Intersect Faces</strong> then delete the parts inside</td>
+          </tr>
+          <tr>
+            <td>Extra hidden geometry</td>
+            <td>View → <strong>Hidden Geometry</strong> → delete what you don't need</td>
+          </tr>
+        </table>
+
+        <p><strong>Save your work:</strong></p>
+        <ol>
+          <li>Click the model name at the top</li>
+          <li>Rename it: <code>week5-studentid-firstname-lastname</code></li>
+          <li>Click <strong>Save</strong></li>
+          <li>Verify it appears in your Google Drive</li>
+        </ol>
+
+        <div class="warning">
+          <strong>Don't stress if it's not perfect.</strong> Solid geometry is the hardest part of 3D modeling. If your model isn't solid yet, that's okay — we'll keep working on it in Week 6 when we prepare for printing.
+        </div>
+      </div>
+    </section>
+
+    <!-- Check Yourself -->
+    <section>
+      <h2>Check Yourself</h2>
+      <p>Before you finish, make sure you can do all of these:</p>
+      <div class="check">
+        <ul>
+          <li>I built a cabin on the deck</li>
+          <li>I added a door to the cabin</li>
+          <li>I created portholes using Circle + Push/Pull</li>
+          <li>I added a plank sticking out from the ship</li>
+          <li>I checked if my model is a Solid Group</li>
+          <li>I fixed at least one issue with my model</li>
+          <li>I saved my file correctly</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Key Terms -->
+    <section>
+      <h2>Key Words to Remember</h2>
+      <table>
+        <tr>
+          <th>Term</th>
+          <th>What It Means</th>
+        </tr>
+        <tr><td>Cabin</td><td>A small house-like structure on the deck of a ship</td></tr>
+        <tr><td>Portholes</td><td>Round windows cut into the side of a ship's hull</td></tr>
+        <tr><td>Plank</td><td>A wooden board sticking out from a ship's side</td></tr>
+        <tr><td>Solid</td><td>A 3D object that is completely closed with no gaps or holes</td></tr>
+        <tr><td>Manifold</td><td>Another word for solid — every edge shared by exactly 2 faces</td></tr>
+      </table>
+    </section>
+
+    <!-- Quick Check -->
+    <section>
+      <h2>Quick Check</h2>
+      <p>Answer these in your head or on paper:</p>
+      <ol>
+        <li>What two tools do you use to make a porthole?</li>
+        <li>Where is the cabin usually placed on a ship?</li>
+        <li>What does a "Solid Group" mean?</li>
+        <li>How do you fix an inside-out face?</li>
+      </ol>
+    </section>
+
+    <!-- Homework -->
+    <section>
+      <h2>Optional Homework</h2>
+      <ul>
+        <li>Sketch a flag design for your pirate ship</li>
+        <li>Think about what colors and materials would look good on your ship</li>
+        <li>If you have SketchUp at home, experiment with different cabin styles</li>
+      </ul>
+    </section>
+
+    <!-- Next Week -->
+    <section>
+      <h2>Coming Next Week</h2>
+      <p><strong>Week 6: Customization &amp; Export for 3D Printing</strong> — You'll add materials and colors, explore the 3D Warehouse, and export your pirate ship as an STL file ready for printing.</p>
+    </section>
+
+    <!-- Teacher Instructions -->
+    <div class="teacher-instructions">
+      <h2>Teacher Instructions</h2>
+      <ol>
+        <li>Verify each student still has their Week 4 hull and deck saved in Google Drive.</li>
+        <li>Review Offset, Move, and Copy quickly before starting new content.</li>
+        <li>Demonstrate how to build the cabin step by step.</li>
+        <li>Show how to add a door using Rectangle + Push/Pull.</li>
+        <li>Demonstrate the Circle + Push/Pull technique for portholes.</li>
+        <li>Show how to place portholes evenly along the hull.</li>
+        <li>Demonstrate how to add the plank.</li>
+        <li>Guide students through completing their pirate ship.</li>
+        <li>Circulate and assist students who struggle with portholes.</li>
+        <li>Demonstrate how to check for a Solid Group using Entity Info.</li>
+        <li>Show how to fix common non-solid issues (stray lines, reversed faces, gaps).</li>
+        <li>Remind students to save often with Ctrl + S.</li>
+        <li>Verify each student's file is named and saved correctly.</li>
+        <li>Note which students need extra support in Week 6.</li>
+      </ol>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-buttons">
+      <a href="week4.html" class="back-btn">&larr; Back: Week 4</a>
+      <a href="week6.html" class="next-btn">Next Lesson: Customization &amp; Export &rarr;</a>
+    </div>
+
+  </div>
+
+  <!-- 🔤 Falling text timer -->
+  <script>
+    const textContainer = document.getElementById('textContainer');
+    const phrases = ['Mathayom 5/1', 'Mathayom 5/2'];
+
+    function createFallingText() {
+      // Clear any existing letters
+      textContainer.innerHTML = '';
+
+      // Build a queue of letters in sequence: all of phrase 1, then all of phrase 2
+      let sequence = [];
+      phrases.forEach(phrase => {
+        for (let ch of phrase) {
+          sequence.push(ch);
+        }
+        // Add a small gap between phrases
+        sequence.push(' ');
+      });
+
+      // Create each letter with a slight delay so they fall in sequence
+      sequence.forEach((letter, index) => {
+        const el = document.createElement('div');
+        el.className = 'falling-letter';
+        el.textContent = letter === ' ' ? '' : letter;
+        el.style.left = (10 + Math.random() * 80) + '%';
+        el.style.fontSize = (1.3 + Math.random() * 0.6) + 'em';
+        el.style.animationDuration = (4 + Math.random() * 2) + 's';
+        el.style.animationDelay = (index * 0.35) + 's'; // sequence delay
+        textContainer.appendChild(el);
+      });
+
+      // Show the falling text
+      textContainer.classList.add('active');
+
+      // Let it fall for 20 seconds
+      setTimeout(() => {
+        textContainer.classList.remove('active');
+      }, 20000);
+    }
+
+    // First fall after 10 seconds (for testing)
+    setTimeout(createFallingText, 10000);
+
+    // Then every 10 minutes (600,000 ms)
+    setInterval(createFallingText, 600000);
+  </script>
+
+</body>
+</html>

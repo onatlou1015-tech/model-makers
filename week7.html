@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 7 — Design Your Own Real-Life Product</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #FFF6EB;
+      color: #2B2018;
+      line-height: 1.7;
+      padding: 40px 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #FFF6EB;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(43, 32, 24, 0.25);
+      overflow: hidden;
+      border: 1px solid #E7D6C4;
+      position: relative;
+    }
+
+    /* Header */
+    header {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 45px 40px;
+      text-align: center;
+    }
+
+    header .week-label {
+      color: #C7AD94;
+      font-size: 0.95em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      color: #FFF6EB;
+    }
+
+    header .subtitle {
+      color: #C7AD94;
+      font-size: 1em;
+    }
+
+    /* Content sections */
+    section {
+      padding: 30px 40px;
+      border-bottom: 1px solid #E7D6C4;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    h2 {
+      color: #2B2018;
+      font-size: 1.4em;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #C7AD94;
+    }
+
+    h3 {
+      color: #8A6E57;
+      font-size: 1.1em;
+      margin: 20px 0 10px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: #2B2018;
+    }
+
+    ul, ol {
+      margin: 10px 0 15px 25px;
+      color: #2B2018;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* Welcome box */
+    .welcome {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 18px 22px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    /* Goal box */
+    .goal {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .goal ul {
+      margin-bottom: 0;
+    }
+
+    /* Activity blocks */
+    .activity {
+      background: #FFF6EB;
+      border: 2px solid #C7AD94;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 18px;
+    }
+
+    .activity h3 {
+      color: #2B2018;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .activity .time {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      font-size: 0.8em;
+      padding: 3px 12px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    /* Tip box */
+    .tip {
+      background: #E7D6C4;
+      border-left: 5px solid #8A6E57;
+      padding: 14px 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+      font-style: italic;
+    }
+
+    /* Warning box */
+    .warning {
+      background: #FFF6EB;
+      border-left: 5px solid #2B2018;
+      padding: 14px 20px;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+
+    /* Video button */
+    .video-wrap {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .stylish-link {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      border-radius: 6px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: bold;
+      border: 2px solid #2B2018;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .stylish-link:hover {
+      background-color: #2B2018;
+      color: #FFF6EB;
+      transform: translateY(-2px);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 0.95em;
+    }
+
+    th {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #E7D6C4;
+      color: #2B2018;
+    }
+
+    tr:nth-child(even) td {
+      background: #FFF6EB;
+    }
+
+    tr:hover td {
+      background: #E7D6C4;
+    }
+
+    /* Step boxes */
+    .step {
+      background: #E7D6C4;
+      border-radius: 8px;
+      padding: 14px 20px;
+      margin: 12px 0;
+    }
+
+    .step strong {
+      color: #2B2018;
+    }
+
+    /* Check yourself */
+    .check {
+      background: #FFF6EB;
+      border: 2px dashed #8A6E57;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-top: 10px;
+    }
+
+    .check ul {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .check li::before {
+      content: "☐ ";
+      color: #8A6E57;
+      font-weight: bold;
+    }
+
+    /* Teacher instructions */
+    .teacher-instructions {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 30px 40px;
+    }
+
+    .teacher-instructions h2 {
+      color: #FFF6EB;
+      border-bottom: 2px solid #8A6E57;
+    }
+
+    .teacher-instructions ol {
+      margin-left: 25px;
+      color: #FFF6EB;
+    }
+
+    .teacher-instructions li {
+      margin-bottom: 8px;
+      color: #E7D6C4;
+    }
+
+    /* Rubric */
+    .rubric-section {
+      background: #FFF6EB;
+      padding: 30px 40px;
+      border-bottom: 1px solid #E7D6C4;
+    }
+
+    .rubric-section h2 {
+      color: #2B2018;
+      font-size: 1.4em;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #C7AD94;
+    }
+
+    .rubric-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 0.9em;
+    }
+
+    .rubric-table th {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 12px 14px;
+      text-align: left;
+      border: 1px solid #8A6E57;
+    }
+
+    .rubric-table td {
+      padding: 12px 14px;
+      border: 1px solid #C7AD94;
+      color: #2B2018;
+      vertical-align: top;
+    }
+
+    .rubric-table tr:nth-child(even) td {
+      background: #FFF6EB;
+    }
+
+    .rubric-table tr:hover td {
+      background: #E7D6C4;
+    }
+
+    .rubric-total {
+      background: #2B2018;
+      color: #FFF6EB;
+      padding: 16px 24px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.15em;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+
+    .rubric-total span {
+      color: #C7AD94;
+    }
+
+    /* Navigation buttons */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 25px 40px;
+      background: #E7D6C4;
+      border-top: 3px solid #8A6E57;
+      flex-wrap: wrap;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: #FFF6EB;
+      color: #2B2018;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      border: 2px solid #8A6E57;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #8A6E57;
+      color: #FFF6EB;
+    }
+
+    .next-btn {
+      display: inline-block;
+      background: #8A6E57;
+      color: #FFF6EB;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 25px;
+      font-size: 0.9em;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      margin-left: auto;
+    }
+
+    .next-btn:hover {
+      background: #2B2018;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5em; }
+      section, .teacher-instructions, .rubric-section { padding: 22px; }
+      .activity { padding: 16px; }
+      .nav-buttons {
+        flex-direction: column;
+        padding: 20px;
+      }
+      .next-btn, .back-btn {
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+      }
+      .rubric-table { font-size: 0.8em; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="week-label">Week 7</div>
+      <h1>Design Your Own Real-Life Product</h1>
+      <div class="subtitle">Solving a real problem with 3D modeling and printing</div>
+    </header>
+
+    <!-- Welcome -->
+    <section>
+      <h2>Welcome to the Final Week!</h2>
+      <div class="welcome">
+        <p>You've learned to navigate SketchUp, draw with precision, build a sandbox, and construct a full pirate ship. Now it's time to use everything you've learned to <strong>solve a real problem</strong>.</p>
+        <p>This week, you'll identify a problem in your school, home, or community — and design a 3D-printed solution. This is what real designers and engineers do every day.</p>
+        <p>By the end of this lesson, you'll have a finished 3D model, an exported STL file, and a short presentation explaining how your design adds value.</p>
+      </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section>
+      <h2>What You'll Learn This Week</h2>
+      <div class="goal">
+        <ul>
+          <li>Identify a <strong>real-life problem</strong> that a 3D-printed object could solve</li>
+          <li>Design and model your solution in <strong>SketchUp</strong></li>
+          <li><strong>Export for printing</strong> and check in a slicer</li>
+          <li>Present your idea and reflect on the <strong>value</strong> it adds</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section>
+      <h2>Let's Begin</h2>
+
+      <!-- Activity 1 -->
+      <div class="activity">
+        <span class="time">10 minutes</span>
+        <h3>1. Introduce the Project + Rubric</h3>
+        <p>This is your final project. You'll design a 3D-printed product that solves a real problem. Your teacher will walk you through the rubric at the end of this page.</p>
+
+        <p><strong>Project requirements:</strong></p>
+        <ul>
+          <li>Identify a real problem (school, home, or community)</li>
+          <li>Design a 3D-printed solution in SketchUp</li>
+          <li>Model must be a Solid Group (printable)</li>
+          <li>Export as an STL file</li>
+          <li>Present your idea to the class (2–3 minutes)</li>
+          <li>Write a short reflection on the value of your design</li>
+        </ul>
+
+        <div class="tip">
+          <strong>Keep it simple.</strong> A small, working solution is better than a huge, unfinished one. Focus on one clear problem and solve it well.
+        </div>
+      </div>
+
+      <!-- Activity 2 -->
+      <div class="activity">
+        <span class="time">15 minutes</span>
+        <h3>2. Brainstorm Real-Life Problems</h3>
+        <p>Look around you. What problems could a 3D-printed object solve? Think about school, home, and your community.</p>
+
+        <p><strong>Project ideas to get you started:</strong></p>
+        <table>
+          <tr>
+            <th>Problem</th>
+            <th>3D-Printed Solution</th>
+          </tr>
+          <tr><td>Broken classroom item</td><td>Replacement part</td></tr>
+          <tr><td>No pencil grip for disabled student</td><td>Custom pencil holder</td></tr>
+          <tr><td>Phone falls off desk</td><td>Phone stand</td></tr>
+          <tr><td>Lab tools missing</td><td>Custom organizer</td></tr>
+          <tr><td>Plants need labels</td><td>Garden markers</td></tr>
+          <tr><td>Door handle hard to grip</td><td>Handle attachment</td></tr>
+        </table>
+
+        <p><strong>Other ideas you could try:</strong></p>
+        <ul>
+          <li>A cable holder to stop wires from tangling</li>
+          <li>A book stand for reading hands-free</li>
+          <li>A keychain with your name or class logo</li>
+          <li>A small tray to organize desk supplies</li>
+          <li>A hook to hang a bag on a desk</li>
+          <li>A custom bookmark for a favorite book</li>
+          <li>A clip to keep a bag of chips sealed</li>
+          <li>A stand for a tablet or e-reader</li>
+          <li>A replacement knob for a drawer or cabinet</li>
+        </ul>
+
+        <p><strong>Brainstorm activity:</strong></p>
+        <div class="step">
+          <ul>
+            <li>In your notebook, write down 5 problems you've noticed</li>
+            <li>For each one, sketch a quick idea for a 3D-printed solution</li>
+            <li>Circle the one you're most excited about</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>Think small.</strong> The best 3D printing projects solve small, specific problems — a pencil grip is better than a whole new desk.
+        </div>
+      </div>
+
+      <!-- Activity 3 -->
+      <div class="activity">
+        <span class="time">25 minutes</span>
+        <h3>3. Design and Model Your Solution</h3>
+        <p>Now it's time to build. Use everything you've learned: Rectangle, Line, Circle, Push/Pull, Offset, Move, and Copy.</p>
+
+        <p><strong>Step 1: Sketch your idea on paper first</strong></p>
+        <div class="step">
+          <ul>
+            <li>Draw your solution from the front, top, and side</li>
+            <li>Write down the dimensions you'll use</li>
+            <li>Decide on colors and materials</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Build the main shape</strong></p>
+        <div class="step">
+          <ul>
+            <li>Open a new SketchUp model</li>
+            <li>Start with the biggest part — use Rectangle or Circle</li>
+            <li>Push/Pull to give it thickness</li>
+            <li>Type exact dimensions as you go</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Add details</strong></p>
+        <div class="step">
+          <ul>
+            <li>Use Offset to add walls or borders</li>
+            <li>Use Circle + Push/Pull to add holes or curves</li>
+            <li>Use Move and Copy to duplicate parts (like multiple legs or slots)</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 4: Apply materials and colors</strong></p>
+        <div class="step">
+          <ul>
+            <li>Open the Materials panel</li>
+            <li>Choose colors that match the real product</li>
+            <li>Paint each part</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 5: Check for Solid Group</strong></p>
+        <div class="step">
+          <ul>
+            <li>Select everything (drag a box around it)</li>
+            <li>Right-click → Group</li>
+            <li>Look at Entity Info — should say "Solid Group"</li>
+            <li>Fix any gaps or stray lines</li>
+          </ul>
+        </div>
+
+        <div class="warning">
+          <strong>Stuck? Ask yourself:</strong> What's the simplest version of this idea? Build that first, then add details if you have time.
+        </div>
+      </div>
+
+      <!-- Activity 4 -->
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>4. Export as STL + Slicer Check</h3>
+        <p>Once your model is finished and solid, export it and check it in a slicer.</p>
+
+        <p><strong>Step 1: Export as STL</strong></p>
+        <div class="step">
+          <ul>
+            <li>Go to <strong>File → Export → 3D Model</strong></li>
+            <li>Select <strong>STL</strong> as the file type</li>
+            <li>Name it: <code>week7-studentid-firstname-lastname.stl</code></li>
+            <li>Click <strong>Export</strong></li>
+          </ul>
+        </div>
+
+        <p><strong>Step 2: Open in a slicer</strong></p>
+        <div class="step">
+          <ul>
+            <li>Open Cura or PrusaSlicer</li>
+            <li>Import your STL file</li>
+            <li>Look at the preview</li>
+          </ul>
+        </div>
+
+        <p><strong>Step 3: Check these things:</strong></p>
+        <div class="step">
+          <ul>
+            <li>Does the model fit on the print bed?</li>
+            <li>Are there any overhangs that need supports?</li>
+            <li>Are the walls thick enough (at least 1.2mm)?</li>
+            <li>How long will it take to print?</li>
+          </ul>
+        </div>
+
+        <div class="tip">
+          <strong>Adjust if needed:</strong> If your model is too big, scale it down in the slicer. If it has overhangs, enable supports.
+        </div>
+      </div>
+
+      <!-- Activity 5 -->
+      <div class="activity">
+        <span class="time">20 minutes</span>
+        <h3>5. Present Your Idea to the Class</h3>
+        <p>Time to share. You'll present your project in 2–3 minutes.</p>
+
+        <p><strong>What to include in your presentation:</strong></p>
+        <ol>
+          <li><strong>Problem:</strong> What real-life problem does your design solve?</li>
+          <li><strong>Solution:</strong> What did you design, and how does it work?</li>
+          <li><strong>Process:</strong> Show your model — orbit it around so everyone can see</li>
+          <li><strong>Printability:</strong> Mention if it's a solid group, print time, and supports</li>
+          <li><strong>Value:</strong> Who benefits from your design?</li>
+        </ol>
+
+        <p><strong>Presentation tips:</strong></p>
+        <ul>
+          <li>Speak clearly and slowly</li>
+          <li>Show your SketchUp model live if possible</li>
+          <li>Explain your thinking — not just what you built, but why</li>
+          <li>Be honest about what was hard</li>
+        </ul>
+
+        <div class="tip">
+          <strong>No need to be perfect.</strong> Real designers present unfinished work all the time. Focus on explaining your idea clearly.
+        </div>
+      </div>
+
+      <!-- Activity 6 -->
+      <div class="activity">
+        <span class="time">10 minutes</span>
+        <h3>6. Reflection: How Did You Add Value?</h3>
+        <p>Take a few minutes to reflect on your project.</p>
+
+        <p><strong>Write a short reflection (3–5 sentences) answering:</strong></p>
+        <ol>
+          <li>What problem did your design solve?</li>
+          <li>Who benefits from your design?</li>
+          <li>What was the hardest part of the project?</li>
+          <li>What would you do differently if you made it again?</li>
+          <li>How did you add value to a real-life service or product?</li>
+        </ol>
+
+        <p><strong>Submit your work:</strong></p>
+        <ol>
+          <li>Save your SketchUp file: <code>week7-studentid-firstname-lastname</code></li>
+          <li>Save your STL file: <code>week7-studentid-firstname-lastname.stl</code></li>
+          <li>Submit your reflection in Google Classroom or on paper</li>
+          <li>Submit the link to your SketchUp file if required</li>
+        </ol>
+
+        <div class="tip">
+          <strong>Congratulations!</strong> You've completed the full Design to Print unit. You now know how to take an idea from sketch to 3D model to a printable object.
+        </div>
+      </div>
+    </section>
+
+    <!-- Check Yourself -->
+    <section>
+      <h2>Check Yourself</h2>
+      <p>Before you submit, make sure you can do all of these:</p>
+      <div class="check">
+        <ul>
+          <li>I identified a real-life problem</li>
+          <li>I designed a solution in SketchUp</li>
+          <li>My model is a Solid Group</li>
+          <li>I exported my model as an STL file</li>
+          <li>I checked my model in a slicer</li>
+          <li>I presented my idea to the class</li>
+          <li>I wrote a reflection on how my design adds value</li>
+          <li>I saved all my files with the correct filenames</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Key Terms -->
+    <section>
+      <h2>Key Words to Remember</h2>
+      <table>
+        <tr>
+          <th>Term</th>
+          <th>What It Means</th>
+        </tr>
+        <tr><td>Design Process</td><td>The steps designers follow: identify → sketch → model → test → improve</td></tr>
+        <tr><td>Prototype</td><td>A first version of a design — made to test the idea</td></tr>
+        <tr><td>Iteration</td><td>Improving a design over multiple versions</td></tr>
+        <tr><td>Value</td><td>The benefit a design brings to a real person, service, or product</td></tr>
+      </table>
+    </section>
+
+    <!-- Quick Check -->
+    <section>
+      <h2>Quick Check</h2>
+      <p>Answer these in your head or on paper:</p>
+      <ol>
+        <li>What problem does your design solve?</li>
+        <li>Who benefits from your design?</li>
+        <li>Is your model a Solid Group? How do you know?</li>
+        <li>What is one thing you would improve in a second version?</li>
+      </ol>
+    </section>
+
+    <!-- Rubric -->
+    <div class="rubric-section">
+      <h2>Project Rubric</h2>
+      <p>Your final project will be graded using the rubric below. The highest possible score is <strong>50 points</strong>.</p>
+
+      <table class="rubric-table">
+        <tr>
+          <th>Criteria</th>
+          <th>Excellent (10)</th>
+          <th>Good (7)</th>
+          <th>Fair (4)</th>
+          <th>Needs Work (1)</th>
+        </tr>
+        <tr>
+          <td><strong>Problem Identification</strong></td>
+          <td>Clear, specific, real-life problem that is meaningful and well explained</td>
+          <td>Clear problem, but not fully explained or slightly generic</td>
+          <td>Problem is vague or not clearly real-life</td>
+          <td>No clear problem identified</td>
+        </tr>
+        <tr>
+          <td><strong>Design &amp; Modeling</strong></td>
+          <td>Model is complete, accurate, uses tools creatively, and solves the problem well</td>
+          <td>Model is mostly complete and solves the problem</td>
+          <td>Model is incomplete or only partially solves the problem</td>
+          <td>Model is missing or does not solve the problem</td>
+        </tr>
+        <tr>
+          <td><strong>Printability</strong></td>
+          <td>Model is a Solid Group, properly scaled, wall thickness is appropriate, overhangs considered</td>
+          <td>Model is mostly printable with minor issues</td>
+          <td>Model has several printability issues</td>
+          <td>Model is not printable</td>
+        </tr>
+        <tr>
+          <td><strong>Presentation</strong></td>
+          <td>Clear, confident, well-organized presentation that explains the problem, solution, and value</td>
+          <td>Clear presentation with minor gaps</td>
+          <td>Presentation is unclear or incomplete</td>
+          <td>No presentation or did not explain the project</td>
+        </tr>
+        <tr>
+          <td><strong>Reflection</strong></td>
+          <td>Thoughtful reflection that clearly explains the value added and what was learned</td>
+          <td>Reflection is present but brief or surface-level</td>
+          <td>Reflection is vague or missing key points</td>
+          <td>No reflection submitted</td>
+        </tr>
+      </table>
+
+      <div class="rubric-total">
+        Total Possible Score: <span>50 points</span>
+      </div>
+    </div>
+
+    <!-- Teacher Instructions -->
+    <div class="teacher-instructions">
+      <h2>Teacher Instructions</h2>
+      <ol>
+        <li>Verify each student still has their Week 6 pirate ship saved in Google Drive.</li>
+        <li>Introduce the final project and walk through the rubric.</li>
+        <li>Guide a short class brainstorm of real-life problems.</li>
+        <li>Circulate during the design and modeling phase to assist students.</li>
+        <li>Remind students to keep designs simple and achievable.</li>
+        <li>Assist students who struggle with turning ideas into SketchUp models.</li>
+        <li>Ensure each student exports an STL file.</li>
+        <li>Demonstrate importing the STL into a slicer.</li>
+        <li>Guide students through checking printability (scale, supports, wall thickness).</li>
+        <li>Facilitate student presentations — time each to 2–3 minutes.</li>
+        <li>Collect the written reflections.</li>
+        <li>Verify each student submits both the SketchUp file and STL file.</li>
+        <li>Grade using the rubric above (50 points total).</li>
+        <li>Provide feedback and close the unit with a short recap.</li>
+      </ol>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-buttons">
+      <a href="week6.html" class="back-btn">&larr; Back: Week 6</a>
+      <a href="index.html" class="next-btn">Finish: Back to Unit Index &rarr;</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
